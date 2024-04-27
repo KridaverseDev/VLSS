@@ -5,7 +5,8 @@ import Home from "./components/home/Home";
 import Veershaiva from "./components/veerashaiva/Veerashaiva";
 import About from "./components/about/About";
 import Leaders from "./components/leaders/Leaders";
-import Organization from "./components/organization/organization";
+import Events from "./components/Events/Events";
+import EventDetailsPage from "./components/Events/EventDetailsPage";
 import Form from "./components/form/Form";
 import Contact from "./components/contact/Contact";
 
@@ -18,7 +19,8 @@ function App() {
           <Route path="/veerashaiva" element={<Veershaiva />} />
           <Route path="/about" element={<About />} />
           <Route path="/leaders" element={<Leaders />} />
-          <Route path="/organization" element={<Organization />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/events/:eventId" element={<EventDetailsPage />} />
           <Route path="/form" element={<Form />} />
           <Route path="/contact" element={<Contact />} />
         </Route>

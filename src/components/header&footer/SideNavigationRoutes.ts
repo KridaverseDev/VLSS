@@ -19,7 +19,7 @@ export const signedInSideNavigationItems: NavigationItem[] = [
   },
   {
     label: "Events",
-    path: "/organization",
+    path: "/Events",
   },
   {
     label: "Leaders",

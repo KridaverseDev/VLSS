@@ -162,13 +162,13 @@ const Header: React.FC = () => {
                   <Button
                     color="inherit"
                     component={Link}
-                    to="/organization"
-                    sx={{ textTransform: "none", ...isActive("/organization") }}
+                    to="/Events"
+                    sx={{ textTransform: "none", ...isActive("/Events") }}
                   >
                     Events
                   </Button>
                   {renderDivider(
-                    location.pathname === "/organization",
+                    location.pathname === "/Events",
                     location.pathname
                   )}
                 </Box>
