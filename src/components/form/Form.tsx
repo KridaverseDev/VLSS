@@ -329,16 +329,7 @@ const Form: React.FC = () => {
                   />
                 </Grid>
               </Grid>
-                  <div>
-                  <PDFViewer style={{ width: '100%', height: '90vh' }}>
-                    <PDFDocument />
-                  </PDFViewer>
-                  <PDFDownloadLink document={<PDFDocument />} fileName="example.pdf">
-                    {({ blob, url, loading, error }) =>
-                      loading ? 'Loading document...' : 'Download PDF'
-                    }
-                  </PDFDownloadLink>
-                </div>
+                 
               <Grid
                 sx={{
                   padding: "10px",

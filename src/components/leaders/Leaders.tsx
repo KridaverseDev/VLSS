@@ -28,7 +28,7 @@ import basappa from "./photos/basappa.jpeg";
 import nataraj from "./photos/nataraj.jpeg";
 import onkarappa from "./photos/onkarappa.jpeg";
 
-
+  
 
 const Leaders: React.FC = () => {
   const { breakpoints } = useTheme();

@@ -218,6 +218,7 @@ const Home: React.FC = () => {
           borderRadius: matchMobileView ? "15px" : "0",
         }}
       >
+          {/* image slider */}
         <ImageSlider images={demoImages} />
       </Paper>
     </div>

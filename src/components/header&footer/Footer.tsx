@@ -35,41 +35,7 @@ const Footer: React.FC = () => {
             Our website serves as a dedicated platform to the Lingayat religion, inspired by the 12th-century visionary, Guru Basavanna...
           </Typography>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography variant="h5" gutterBottom style={{ fontWeight: 600 }}>
-            Subscribe to Our Newsletter
-          </Typography>
-          <Stack
-            direction={{ xs: 'column', md: 'row' }}
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <TextField
-              fullWidth={!matches}
-              variant="filled"
-              size="medium"
-              label="Enter your email"
-              sx={{
-                backgroundColor: "#fff",
-                borderRadius: 1,
-                '.MuiFilledInput-input': { padding: '10px' },
-                '.MuiFilledInput-root': { borderRadius: '4px' }
-              }}
-            />
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#4caf50",
-                '&:hover': { backgroundColor: "#66bb6a" },
-                width: matches ? 'auto' : '100%',
-                marginTop: matches ? 0 : 2,
-              }}
-            >
-              Subscribe
-            </Button>
-          </Stack>
-        </Grid>
+        
         <Grid item xs={12} md={4}>
           <Typography variant="h5" gutterBottom style={{ fontWeight: 600 }}>
             Contact & Follow Us
