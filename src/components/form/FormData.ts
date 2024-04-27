@@ -1,6 +1,6 @@
 export interface FormData {
-  SlNumber: string;
   applicationName: string;
+  occupation: string;
   fatherOrHusbandName: string;
   dob: Date;
   introducerDetails: string;
@@ -15,11 +15,12 @@ export interface FormData {
   aadharNumber: string;
   membershipFee: string;
   amountPaidInCash: string;
+  utrNumber: string;
 }
 
 const initialFormData: FormData = {
-  SlNumber: "",
   applicationName: "",
+  occupation: "",
   fatherOrHusbandName: "",
   dob: new Date(),
   introducerDetails: "",
@@ -34,6 +35,7 @@ const initialFormData: FormData = {
   aadharNumber: "",
   membershipFee: "",
   amountPaidInCash: "",
+  utrNumber: "",
 };
 
 export default initialFormData;

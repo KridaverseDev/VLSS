@@ -16,9 +16,8 @@ import {
   useTheme,
 } from "@mui/material";
 import initialFormData, { FormData } from "./FormData";
-import PDFDocument from './pdfcreation';
-import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
-
+import PDFDocument from "./pdfcreation";
+import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -111,7 +110,10 @@ const Form: React.FC = () => {
         <Grid item xs={12} sm={matchMobileView ? 12 : 11}>
           <Paper
             elevation={24}
-            sx={{ borderRadius: matchMobileView ? "15px" : "0px 30px 30px 30px", marginLeft: matchMobileView ? "0" : "-15px" }}
+            sx={{
+              borderRadius: matchMobileView ? "15px" : "0px 30px 30px 30px",
+              marginLeft: matchMobileView ? "0" : "-15px",
+            }}
           >
             <Box p={3}>
               <Typography variant="h4" align="center" gutterBottom>
@@ -131,23 +133,19 @@ const Form: React.FC = () => {
                   <TextField
                     fullWidth
                     required
-                    label="Sl number"
-                    name="SlNumber"
-                    value={formData.SlNumber}
+                    label="Applicant’s Name"
+                    name="applicationName"
+                    value={formData.applicationName}
                     onChange={handleInputChange}
                   />
-                  <FormHelperText>
-                    A minimum length of 10 characters is required. Please edit
-                    the field.
-                  </FormHelperText>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     fullWidth
                     required
-                    label="Applicant’s Name"
-                    name="applicationName"
-                    value={formData.applicationName}
+                    label="Occupation"
+                    name="occupation"
+                    value={formData.occupation}
                     onChange={handleInputChange}
                   />
                 </Grid>
@@ -314,8 +312,9 @@ const Form: React.FC = () => {
                     required
                     label="Membership  Fee"
                     name="membershipFee"
-                    value={formData.membershipFee}
-                    onChange={handleInputChange}
+                    value={1000}
+                    // onChange={handleInputChange}
+                    disabled
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -328,8 +327,18 @@ const Form: React.FC = () => {
                     onChange={handleInputChange}
                   />
                 </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    required
+                    label="Enter UTR Number"
+                    name="utrNumber"
+                    value={formData.utrNumber}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
               </Grid>
-                 
+
               <Grid
                 sx={{
                   padding: "10px",
@@ -337,7 +346,7 @@ const Form: React.FC = () => {
                   justifyContent: "center",
                 }}
               >
-                <Button
+                {/* <Button
                   variant="outlined"
                   size="small"
                   style={{
@@ -349,15 +358,18 @@ const Form: React.FC = () => {
                   }}
                 >
                   Save In Draft
-                </Button>
+                </Button> */}
+
                 <Button
                   type="submit"
                   variant="contained"
+                  color="success"
                   style={{
                     alignItems: "center",
                     textTransform: "none",
                     margin: "20px",
-                    backgroundColor: "#7D0B03",
+                    padding: "6px 20px",
+                    // backgroundColor: "#7D0B03",
                   }}
                 >
                   Submit
