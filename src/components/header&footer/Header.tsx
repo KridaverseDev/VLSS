@@ -8,14 +8,14 @@ import {
   useMediaQuery,
   useTheme,
   IconButton,
-  Slide
+  Slide,
 } from "@mui/material";
 
 import { Link, useLocation } from "react-router-dom";
 import logo from "./logo_header.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import SideNavigation from "./SideNavigation";
-import DehazeIcon from '@mui/icons-material/Dehaze';
+import DehazeIcon from "@mui/icons-material/Dehaze";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -62,13 +62,15 @@ const Header: React.FC = () => {
       <>
         {!matchMobileView && (
           <Slide direction="down" in={true} mountOnEnter unmountOnExit>
-
             <Toolbar>
               <img
                 alt="logo"
                 src={logo}
-                style={{ width: matchMobileView ? 40 : 100, marginLeft: matchMobileView ? "20px" : "60px", animation: 'fadeIn 2s ease-out' }}
-
+                style={{
+                  width: matchMobileView ? 40 : 100,
+                  marginLeft: matchMobileView ? "20px" : "60px",
+                  animation: "fadeIn 2s ease-out",
+                }}
               />
               <Typography
                 component="div"
@@ -77,8 +79,10 @@ const Header: React.FC = () => {
                   fontStyle: "inherit",
                   fontSize: "18px",
                   fontWeight: "600",
-                  margin: "0px 100px",
-                  animation: isVisible ? "fadeIn 1s linear" : "fadeOut 1s linear",
+                  margin: "0px 50px",
+                  animation: isVisible
+                    ? "fadeIn 1s linear"
+                    : "fadeOut 1s linear",
                 }}
               >
                 {isEnglish ? (
@@ -112,7 +116,7 @@ const Header: React.FC = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   marginRight: "40px",
-                  height: "36px",
+                  // height: "36px",
                 }}
               >
                 <Box>
@@ -137,7 +141,7 @@ const Header: React.FC = () => {
                     to="/veerashaiva"
                     sx={{ textTransform: "none", ...isActive("/veerashaiva") }}
                   >
-                  Veerashaiva Lingayatha
+                    Veerashaiva Lingayatha
                   </Button>
                   {renderDivider(
                     location.pathname === "/veerashaiva",
@@ -205,14 +209,19 @@ const Header: React.FC = () => {
                     color="inherit"
                     component={Link}
                     to="/form"
-                    sx={{
-                      textTransform: "none",
-                      marginRight: "20px",
-                      fontSize: "18px",
-                    }}
+                    sx={{ textTransform: "none", ...isActive("/form") }}
+                    // sx={{
+                    //   textTransform: "none",
+                    //   marginRight: "20px",
+                    //   fontSize: "18px",
+                    // }}
                   >
                     Form
                   </Button>
+                  {renderDivider(
+                    location.pathname === "/form",
+                    location.pathname
+                  )}
                 </Box>
               </Paper>
             </Toolbar>
@@ -226,7 +235,7 @@ const Header: React.FC = () => {
             display: "flex",
             justifyContent: "space-between",
             margin: "15px 0px",
-            animation: 'slideInFromRight 1s ease-out',
+            animation: "slideInFromRight 1s ease-out",
           }}
         >
           <Box>
@@ -274,7 +283,7 @@ const Header: React.FC = () => {
               className="menu-icon"
               sx={{ display: "flex", margin: "auto 0px" }}
             >
-              <DehazeIcon /> 
+              <DehazeIcon />
             </IconButton>
             <SideNavigation isOpen={isNavOpen} onClose={toggleNav} />
           </Box>
