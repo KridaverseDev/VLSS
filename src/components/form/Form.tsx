@@ -232,7 +232,7 @@ const Form: React.FC = () => {
                 sx={{ margin: "10px 0px", borderTop: "1px solid #9C9C9C" }}
               />
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={12}>
                   <TextField
                     fullWidth
                     required

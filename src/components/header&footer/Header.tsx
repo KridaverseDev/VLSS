@@ -53,6 +53,7 @@ const Header: React.FC = () => {
         marginLeft: pathname === "/" ? "20px" : "0px",
         borderTopLeftRadius: isActive ? "20px" : "0px",
         borderTopRightRadius: isActive ? "20px" : "0px",
+        marginRight: pathname === "/form" ? "20px" : "0px",
       }}
     />
   );
@@ -109,7 +110,7 @@ const Header: React.FC = () => {
               </Typography>
               <Paper
                 sx={{
-                  padding: "15px",
+                  padding: "15px 15px 0px 15px",
                   borderRadius: "35px",
                   backgroundColor: "#ECE1E2",
                   width: "900px",
@@ -209,7 +210,11 @@ const Header: React.FC = () => {
                     color="inherit"
                     component={Link}
                     to="/form"
-                    sx={{ textTransform: "none", ...isActive("/form") }}
+                    sx={{
+                      textTransform: "none",
+                      ...isActive("/form"),
+                      marginRight: "20px",
+                    }}
                     // sx={{
                     //   textTransform: "none",
                     //   marginRight: "20px",

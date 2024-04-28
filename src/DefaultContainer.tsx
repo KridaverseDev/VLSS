@@ -6,7 +6,9 @@ function DefaultContainer() {
   return (
     <div>
       <Header />
-      <Outlet />
+      <div className="my-10">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
