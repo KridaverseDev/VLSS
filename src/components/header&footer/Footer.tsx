@@ -122,11 +122,23 @@ const Footer: React.FC = () => {
           </div>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center" sx={{ mt: 5 }} className="">
-        <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+      <Grid container justifyContent="center" className="my-5">
+        <p
+          // variant="body2"
+          // sx={{ fontStyle: "italic" }}
+          className="text-sm sm:text-base font-medium"
+        >
           &copy; {new Date().getFullYear()} VLSS. All rights reserved.
-        </Typography>
+        </p>
       </Grid>
+      <div className="counter float-right flex gap-1">
+        <span className="font-medium">Total Visits :</span>
+        <img
+          src="https://hitwebcounter.com/counter/counter.php?page=12954542&style=0006&nbdigits=5&type=page&initCount=0"
+          title="Counter Widget"
+          alt="Visit counter For Websites"
+        />
+      </div>
     </footer>
   );
 };
