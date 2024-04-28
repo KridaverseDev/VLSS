@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Image Paths</title>
+</head>
+
+<body>
+    <button id="printPathsButton">Print Image Paths</button>
+    <div id="imagePaths"></div>
+
+    <script type="module">
+        // Import the functions you need from the Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+        import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfWN-Uu0DNIGB--SV1qJmsWFPktzLh02w",
+            authDomain: "vlss-15714.firebaseapp.com",
+            projectId: "vlss-15714",
+            storageBucket: "vlss-15714.appspot.com",
+            messagingSenderId: "72622907259",
+            appId: "1:72622907259:web:7ee56dc18389c6e94467de"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get a reference to the storage service
+        const storage = getStorage(app);
+
+        // Function to print image paths
+        async function printImagePaths() {
+            const imagesRef = ref(storage, 'shivakumar');
+
+            // Find all the prefixes and items.
+            const res = await listAll(imagesRef);
+
+            const eventData = {
+                eventName: "shivakumar",
+                location: "Event Location",
+                date: "Event Date",
+                images: []
+            };
+
+            for (const itemRef of res.items) {
+                const downloadURL = await getDownloadURL(itemRef);
+                eventData.images.push(downloadURL);
+            }
+
+            // Convert object to JSON string
+            const jsonData = JSON.stringify(eventData, null, 2);
+
+            // Create a Blob containing the JSON data
+            const blob = new Blob([jsonData], { type: "application/json" });
+
+            // Create a temporary anchor element to trigger download
+            const anchor = document.createElement("a");
+            anchor.download = "shivakumar_event_data.json";
+            anchor.href = window.URL.createObjectURL(blob);
+            anchor.click();
+
+            // Clean up
+            window.URL.revokeObjectURL(anchor.href);
+
+        }
+
+        // Add click event listener to the button
+        document.getElementById('printPathsButton').addEventListener('click', printImagePaths);
+    </script>
+</body>
+
+</html>
