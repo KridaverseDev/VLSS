@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Event } from "./EventsType";
 import {
   Box,
   Button,
@@ -9,25 +10,29 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import eventsData from "./EventData";
+// import eventsData from "./EventData";
+import eventsData from "./shivakumar_event_data.json";
 import image1 from "./image1.png";
 
-interface Event {
-  eventId: string;
-  date: string;
-  location: string;
-  eventName: string;
-  bgImageUrl: string;
-  imageUrl: string;
-  eventTimings: string;
-  price: string;
-}
+// interface Event {
+//   eventId: string;
+//   date: string;
+//   location: string;
+//   eventName: string;
+//   bgImageUrl: string;
+//   imageUrl: string;
+//   eventTimings: string;
+//   price: string;
+// }
 
 const EventDetailsPage: React.FC = () => {
-  const { eventId } = useParams<{ eventId: string }>();
+  const { eventId } = useParams<{ eventId: any }>();
 
-  const event: Event | undefined = eventsData.find(
-    (event) => event.eventId === eventId
+  // const event: Event | undefined = eventsData.events.find(
+  //   (event) => event.eventId === eventId
+  // );
+  const event: Event | undefined = eventsData?.events.find(
+    (event, index) => index.toString() === eventId
   );
 
   if (!event) {
@@ -38,27 +43,29 @@ const EventDetailsPage: React.FC = () => {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
-    backgroundSize: "cover",
-    borderRadius: 10,
+    backgroundSize: "100% 100%",
+    backgroundRepeat: "no-repeat",
+    borderRadius: 5,
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
     width: "100%",
     height: "100%",
     minWidth: "250px",
-    minHeight: "200px"
+    minHeight: "200px",
   };
 
   return (
     <Box
       sx={{
-        backgroundImage:
-          "linear-gradient(to bottom, #FFFFFF 20%, #FF9A93)",
+        backgroundImage: "linear-gradient(to bottom, #FFFFFF 20%, #FF9A93)",
         padding: "30px",
       }}
     >
       <Grid container spacing={2}>
         <Grid item xs={12} sm={8}>
-          <Card sx={{ ...cardStyle, backgroundImage: `url(${image1})` }} />
+          <Card
+            sx={{ ...cardStyle, backgroundImage: `url(${event?.images[0]})` }}
+          />
         </Grid>
         <Grid item xs={12} sm={4}>
           <Card sx={{ margin: "20px", padding: "15px" }}>
@@ -88,7 +95,7 @@ const EventDetailsPage: React.FC = () => {
                   fontFamily: "Poppins, sans-serif",
                 }}
               >
-                {event.eventTimings}
+                {/* {event.eventTimings} */}
               </Typography>
               <Typography
                 sx={{
@@ -119,7 +126,7 @@ const EventDetailsPage: React.FC = () => {
                   fontFamily: "Poppins, sans-serif",
                 }}
               >
-                Rs. {event.price} Onwards
+                {/* Rs. {event.price} Onwards */}
               </Typography>
               <CardActions
                 sx={{
