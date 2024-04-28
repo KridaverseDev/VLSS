@@ -1,43 +1,67 @@
-import React from "react";
-import { Typography, Grid, Box, Card, CardContent, useMediaQuery, useTheme } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Typography,
+  Grid,
+  Box,
+  Card,
+  CardContent,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { QuestionData } from "./VeerashaivaQuesData";
 
 const Veershaiva: React.FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+
+    return () => {
+      setIsOpen(false);
+    };
+  }, []);
 
   return (
-    <Box sx={{ marginTop: "10px" }}>
-      <Grid container spacing={2} sx={{ padding: matchMobileView ? "0px" : "0 20px" }}>
-        <Grid item xs={12} md={5} sx={{ backgroundColor: "black", padding: "20px", borderBottomLeftRadius: "20px", borderBottomRightRadius: "20px" }}>
-          <Box
-            sx={{
-              alignItems: "center",
-              minHeight: "500px",
-              padding: "20px", 
-              borderRadius: "20px 20px 20px 20px", 
-              backgroundColor: "black",
-            }}
-          >
-            <Typography
-              gutterBottom
-              style={{
-                color: "white",
-                textAlign: "left",
-                fontSize: "28px",
-                fontWeight: "500",
-                margin: "50px 0px 40px 50px",
-              }}
+    <div className="px-5">
+      <Grid
+        container
+        spacing={2}
+        sx={{ padding: matchMobileView ? "10px" : "0 20px" }}
+      >
+        <Grid
+          item
+          xs={12}
+          md={5}
+          sx={{
+            backgroundColor: "#F5F5F5",
+            padding: "20px",
+            // borderBottomLeftRadius: "20px",
+            // borderBottomRightRadius: "20px",
+            borderRadius: "20px",
+            transform: isOpen ? "translateX(0)" : "translateX(-100%)",
+            transition: "transform 0.5s ease-in-out",
+          }}
+        >
+          <div className="">
+            <h2
+              className="text-center text-2xl font-bold my-6"
+              // style={{
+              //   textAlign: "left",
+              //   fontSize: "28px",
+              //   fontWeight: "500",
+              //   margin: "50px 0px 40px 50px",
+              // }}
             >
               Introduction
-            </Typography>
-            <Typography
-              variant="body1"
-              style={{
-                color: "#EEEFF0",
-                marginLeft: "50px",
-                marginRight: "30px",
-              }}
+            </h2>
+            <p
+              className="px-5 text-lg"
+              // style={{
+              //   marginLeft: "50px",
+              //   marginRight: "30px",
+              // }}
             >
               Lingayatism, also known as Lingayat religion, is a distinct and
               influential religious and philosophical movement that originated
@@ -59,9 +83,8 @@ const Veershaiva: React.FC = () => {
               practices, emphasizing moral living, community service (Dasoha),
               and the dignity of labor (Kayaka).
               <br />
-
-            </Typography>
-          </Box>
+            </p>
+          </div>
         </Grid>
         <Grid item xs={12} md={7}>
           <Box
@@ -79,12 +102,14 @@ const Veershaiva: React.FC = () => {
                   borderRadius: "35px",
                   backgroundColor: "#F5F5F5",
                   padding: "0px 20px",
+                  transform: isOpen ? "translateX(0)" : "translateX(100%)", // Move from left to right if open
+                  transition: "transform 0.5s ease-in-out",
                 }}
               >
                 <CardContent>
-                  <Typography variant="h6" gutterBottom>
+                  <h2 className="text-xl font-bold mb-2">
                     {question.Question}
-                  </Typography>
+                  </h2>
                   <Typography variant="body1">{question.Answer}</Typography>
                 </CardContent>
               </Card>
@@ -92,12 +117,12 @@ const Veershaiva: React.FC = () => {
           </Box>
         </Grid>
       </Grid>
-      <Box sx={{
-        maxHeight: "600px",
-      }}>
-
-      </Box>
-    </Box>
+      <Box
+        sx={{
+          maxHeight: "600px",
+        }}
+      ></Box>
+    </div>
   );
 };
 
