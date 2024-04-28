@@ -1,75 +1,74 @@
 {
-    "leaders": [
-      {
-        "leader_name": "President",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fpresident.jpeg?alt=media&token=248769a0-5e81-4164-a0c8-5d7b2d03de35",
-        "name":"Mr Suresh G S"
+  "leaders": [
+    {
+      "leader_name": "President",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fpresident.jpeg?alt=media&token=248769a0-5e81-4164-a0c8-5d7b2d03de35",
+      "name": "Mr Suresh G S"
     },
-      {
-        "leader_name": "Vice President",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fvicepresident.jpeg?alt=media&token=c148b5bc-9fd0-4622-9231-a83af6b4b073",
-        "name":"Sri Sunil C M"
-      },
-      {
-        "leader_name": "General Secretary",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FAmaresh.jpeg?alt=media&token=06fbe1e4-7823-456f-be80-3e7945b4e6ec",
-        "name":"Sri Amaresh"
-      },
-      {
-        "leader_name": "Joint Secretary",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fharini.jpeg?alt=media&token=ee004d8c-06e0-4829-b04e-63d156a36fdf",
-        "name":"Smt.Harini S.C."
-      },
-      {
-        "leader_name": "Organising Secretary",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Findudhara.jpeg?alt=media&token=548f53cd-4f3a-4ee1-9b61-f089e1b0c7b3",
-        "name":"Sri G.M. Indudhara"
+    {
+      "leader_name": "Vice President",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fvicepresident.jpeg?alt=media&token=c148b5bc-9fd0-4622-9231-a83af6b4b073",
+      "name": "Sri Sunil C M"
     },
-      {
-        "leader_name": "Treasurer",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fnagappa.jpeg?alt=media&token=a9eb7390-5486-461f-8e99-b8ab3d715b95",
-        "name":"Sri Nagappa B L"
+    {
+      "leader_name": "General Secretary",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FAmaresh.jpeg?alt=media&token=06fbe1e4-7823-456f-be80-3e7945b4e6ec",
+      "name": "Sri Amaresh"
     },
-      {
-        "leader_name": "Legal Advisor",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fnataraj.jpeg?alt=media&token=9c80e56d-c04b-41b9-837f-8ea7b112c79d",
-        "name":"CA Natraj B.C."
+    {
+      "leader_name": "Joint Secretary",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fharini.jpeg?alt=media&token=ee004d8c-06e0-4829-b04e-63d156a36fdf",
+      "name": "Smt.Harini S.C."
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fonkarappa.jpeg?alt=media&token=222b0089-46b3-4a5a-82a9-d252c6569cce",
-        "name":"Sri S.R. Onkarappa"
+    {
+      "leader_name": "Organising Secretary",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Findudhara.jpeg?alt=media&token=548f53cd-4f3a-4ee1-9b61-f089e1b0c7b3",
+      "name": "Sri G.M. Indudhara"
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FNagabhushan.jpeg?alt=media&token=2b8df2d2-db68-4d6f-8e90-67d102051f9e",
-        "name":"Sri K. Nagabhushan"
+    {
+      "leader_name": "Treasurer",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fnagappa.jpeg?alt=media&token=a9eb7390-5486-461f-8e99-b8ab3d715b95",
+      "name": "Sri Nagappa B L"
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fkiran.jpeg?alt=media&token=70aef623-7ffb-47a4-ab2b-7b040c5d378b",
-        "name":"Sri Dr Kiran Kumar"
+    {
+      "leader_name": "Legal Advisor",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fnataraj.jpeg?alt=media&token=9c80e56d-c04b-41b9-837f-8ea7b112c79d",
+      "name": "CA Natraj B.C."
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FMallikarjuna%20Biradar.jpeg?alt=media&token=74bbb81b-fc8b-4b02-9640-d6f28d62a55b",
-        "name":"Sri Dr. Mallikarjuna Biradar"
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fonkarappa.jpeg?alt=media&token=222b0089-46b3-4a5a-82a9-d252c6569cce",
+      "name": "Sri S.R. Onkarappa"
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fmanjunatha.jpeg?alt=media&token=9fa852bb-f9de-4a2a-85db-99e8c473b02d",
-        "name":"Sri Dr Manjunatha L H"
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FNagabhushan.jpeg?alt=media&token=2b8df2d2-db68-4d6f-8e90-67d102051f9e",
+      "name": "Sri K. Nagabhushan"
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fbasappa.jpeg?alt=media&token=f72198d2-c700-431d-91a0-88529ac90b9e",
-        "name" :"Sri Basappa"
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fkiran.jpeg?alt=media&token=70aef623-7ffb-47a4-ab2b-7b040c5d378b",
+      "name": "Sri Dr Kiran Kumar"
     },
-      {
-        "leader_name": "Commitee Member",
-        "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FNiranjan.jpeg?alt=media&token=ec56b453-ba73-4ec0-9326-7a0b9923ae1c",
-        "name":"Sri Niranjan A M"
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FMallikarjuna%20Biradar.jpeg?alt=media&token=74bbb81b-fc8b-4b02-9640-d6f28d62a55b",
+      "name": "Sri Dr. Mallikarjuna Biradar"
+    },
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fmanjunatha.jpeg?alt=media&token=9fa852bb-f9de-4a2a-85db-99e8c473b02d",
+      "name": "Sri Dr Manjunatha L H"
+    },
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2Fbasappa.jpeg?alt=media&token=f72198d2-c700-431d-91a0-88529ac90b9e",
+      "name": "Sri Basappa"
+    },
+    {
+      "leader_name": "Commitee Member",
+      "link": "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/leaders%2FNiranjan.jpeg?alt=media&token=ec56b453-ba73-4ec0-9326-7a0b9923ae1c",
+      "name": "Sri Niranjan A M"
     }
-    ]
-  }
-  
+  ]
+}

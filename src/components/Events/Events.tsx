@@ -1,9 +1,11 @@
 import React from "react";
 import EventCardGrid from "./EventsCardGrid";
-import eventsData from "./EventData";
+// import eventsData from "./EventData";
+import eventsData from "./shivakumar_event_data.json";
 import { Box, Typography } from "@mui/material";
 
 const Events: React.FC = () => {
+  const events = eventsData.events;
   return (
     <Box
       sx={{
@@ -20,7 +22,7 @@ const Events: React.FC = () => {
       >
         Latest
       </Typography>
-      <EventCardGrid events={eventsData} />
+      <EventCardGrid events={events} />
     </Box>
   );
 };
