@@ -14,10 +14,15 @@ import {
   Divider,
   useMediaQuery,
   useTheme,
+  Card,
+  CardContent,
+  CardMedia,
 } from "@mui/material";
 import initialFormData, { FormData } from "./FormData";
 import PDFDocument from "./pdfcreation";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import axios from "axios";
+import qrCodeImage from "../contact/QR.png";
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -75,7 +80,83 @@ const Form: React.FC = () => {
     },
   ];
 
-  console.log({ formData });
+  const amount = [
+    {
+      value: "cash",
+      label: "Cash",
+    },
+    {
+      value: "upi",
+      label: "UPI",
+    },
+    {
+      value: "cheque",
+      label: "Cheque",
+    },
+  ];
+
+  const blood = [
+    {
+      value: "A+",
+      label: "A+",
+    },
+    {
+      value: "A-",
+      label: "A-",
+    },
+    {
+      value: "B+",
+      label: "B+",
+    },
+    {
+      value: "B-",
+      label: "B-",
+    },
+    {
+      value: "AB+",
+      label: "AB+",
+    },
+    {
+      value: "AB-",
+      label: "AB-",
+    },
+    {
+      value: "O+",
+      label: "O+",
+    },
+    {
+      value: "O-",
+      label: "O-",
+    },
+  ];
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/formDetails",
+        formData,
+        {
+          responseType: "blob",
+        }
+      );
+
+      const blob = new Blob([response.data], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "form.pdf");
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      setFormData(initialFormData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Container sx={{ diaply: "flex", justifyContent: "space-between" }}>
@@ -127,226 +208,293 @@ const Form: React.FC = () => {
               <Divider
                 sx={{ margin: "10px 0px", borderTop: "1px solid #9C9C9C" }}
               />
-              {/* <form onSubmit={handleSubmit}> */}
-              <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Applicant’s Name"
-                    name="applicationName"
-                    value={formData.applicationName}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Occupation"
-                    name="occupation"
-                    value={formData.occupation}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Father/ Husband name"
-                    name="fatherOrHusbandName"
-                    value={formData.fatherOrHusbandName}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="DOB(Date of birth)"
-                    name="dob"
-                    type="date"
-                    value={formData.dob}
-                    onChange={handleInputChange}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Introducer name and membership number"
-                    name="introducerDetails"
-                    value={formData.introducerDetails}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Member Residential Address"
-                    name="memberResAddress"
-                    value={formData.memberResAddress}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    id="resTaluk"
-                    sx={{ display: "flex" }}
-                    select
-                    label="Taluk"
-                    onChange={handleInputChange}
-                    name="resTaluk"
-                    value={formData.resTaluk}
-                  >
-                    {taluk.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    id="resDistrict"
-                    sx={{ display: "flex" }}
-                    select
-                    label="District"
-                    onChange={handleInputChange}
-                    name="resDistrict"
-                    value={formData.resDistrict}
-                  >
-                    {district.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-              </Grid>
-              <Divider
-                sx={{ margin: "10px 0px", borderTop: "1px solid #9C9C9C" }}
-              />
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={12}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Member Permanent Address"
-                    name="memberPerAddress"
-                    value={formData.memberPerAddress}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    id="perTaluk"
-                    sx={{ display: "flex" }}
-                    select
-                    label="Taluk"
-                    onChange={handleInputChange}
-                    name="perTaluk"
-                    value={formData.perTaluk}
-                  >
-                    {taluk.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    id="perDistrict"
-                    sx={{ display: "flex" }}
-                    select
-                    label="District"
-                    onChange={handleInputChange}
-                    name="perDistrict"
-                    value={formData.perDistrict}
-                  >
-                    {district.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Family Details"
-                    name="familyDetails"
-                    value={formData.familyDetails}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Phone number"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Aadhar Number"
-                    name="aadharNumber"
-                    value={formData.aadharNumber}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Membership  Fee"
-                    name="membershipFee"
-                    value={1000}
-                    // onChange={handleInputChange}
-                    disabled
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Amount Paid in Cash"
-                    name="amountPaidInCash"
-                    value={formData.amountPaidInCash}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    required
-                    label="Enter UTR Number"
-                    name="utrNumber"
-                    value={formData.utrNumber}
-                    onChange={handleInputChange}
-                  />
-                </Grid>
-              </Grid>
+              <form onSubmit={handleSubmit}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Applicant’s Name"
+                      name="applicationName"
+                      value={formData.applicationName}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Occupation"
+                      name="occupation"
+                      value={formData.occupation}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Father/ Husband name"
+                      name="fatherOrHusbandName"
+                      value={formData.fatherOrHusbandName}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="DOB(Date of birth)"
+                      name="dob"
+                      type="date"
+                      value={formData.dob}
+                      onChange={handleInputChange}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
 
-              <Grid
-                sx={{
-                  padding: "10px",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                {/* <Button
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Education"
+                      name="education"
+                      value={formData.education}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="bloodGroup"
+                      sx={{ display: "flex" }}
+                      select
+                      label="Blood Group"
+                      onChange={handleInputChange}
+                      name="bloodGroup"
+                      value={formData.bloodGroup}
+                    >
+                      {blood.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Introducer name and membership number"
+                      name="introducerDetails"
+                      value={formData.introducerDetails}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Member Residential Address"
+                      name="memberResAddress"
+                      value={formData.memberResAddress}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="resTaluk"
+                      sx={{ display: "flex" }}
+                      select
+                      label="Taluk"
+                      onChange={handleInputChange}
+                      name="resTaluk"
+                      value={formData.resTaluk}
+                    >
+                      {taluk.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="resDistrict"
+                      sx={{ display: "flex" }}
+                      select
+                      label="District"
+                      onChange={handleInputChange}
+                      name="resDistrict"
+                      value={formData.resDistrict}
+                    >
+                      {district.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Pincode"
+                      name="resPincode"
+                      value={formData.resPincode}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Divider
+                  sx={{ margin: "10px 0px", borderTop: "1px solid #9C9C9C" }}
+                />
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={12}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Member Permanent Address"
+                      name="memberPerAddress"
+                      value={formData.memberPerAddress}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="perTaluk"
+                      sx={{ display: "flex" }}
+                      select
+                      label="Taluk"
+                      onChange={handleInputChange}
+                      name="perTaluk"
+                      value={formData.perTaluk}
+                    >
+                      {taluk.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="perDistrict"
+                      sx={{ display: "flex" }}
+                      select
+                      label="District"
+                      onChange={handleInputChange}
+                      name="perDistrict"
+                      value={formData.perDistrict}
+                    >
+                      {district.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Pincode"
+                      name="perPincode"
+                      value={formData.perPincode}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Family Details"
+                      name="familyDetails"
+                      value={formData.familyDetails}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Phone number"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Aadhar Number"
+                      name="aadharNumber"
+                      value={formData.aadharNumber}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Email Id"
+                      name="emailId"
+                      value={formData.emailId}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Membership  Fee"
+                      name="membershipFee"
+                      value={1000}
+                      // onChange={handleInputChange}
+                      disabled
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="perDistrict"
+                      sx={{ display: "flex" }}
+                      select
+                      label="Amount Paid In"
+                      onChange={handleInputChange}
+                      name="amountPaidInCash"
+                      value={formData.amountPaidInCash}
+                    >
+                      {amount.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Enter UTR Number"
+                      name="utrNumber"
+                      value={formData.utrNumber}
+                      onChange={handleInputChange}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid
+                  sx={{
+                    padding: "10px",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* <Button
                   variant="outlined"
                   size="small"
                   style={{
@@ -360,21 +508,21 @@ const Form: React.FC = () => {
                   Save In Draft
                 </Button> */}
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="success"
-                  style={{
-                    alignItems: "center",
-                    textTransform: "none",
-                    margin: "20px",
-                    padding: "6px 20px",
-                    // backgroundColor: "#7D0B03",
-                  }}
-                >
-                  Submit
-                </Button>
-                {/* <Snackbar
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="success"
+                    style={{
+                      alignItems: "center",
+                      textTransform: "none",
+                      margin: "20px",
+                      padding: "6px 20px",
+                      // backgroundColor: "#7D0B03",
+                    }}
+                  >
+                    Submit
+                  </Button>
+                  {/* <Snackbar
                   open={open}
                   autoHideDuration={6000}
                   onClose={handleClose}
@@ -383,12 +531,71 @@ const Form: React.FC = () => {
                     {snackbarMessage}
                   </Alert>
                 </Snackbar> */}
-              </Grid>
-              {/* </form> */}
+                </Grid>
+              </form>
             </Box>
           </Paper>
         </Grid>
       </Grid>
+      <Paper
+        elevation={12}
+        sx={{
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          padding: "20px",
+          marginTop: "20px",
+          borderRadius: "30px 30px 30px 30px",
+          width: "100%",
+        }}
+      >
+        <Card>
+          <Typography variant="h4" gutterBottom sx={{ textAlign: "center" }}>
+            Payment Information
+          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <CardContent>
+                <CardMedia
+                  component="img"
+                  image={qrCodeImage}
+                  alt="QR Code"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    maxWidth: "300px",
+                    maxHeight: "300px",
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 2, fontSize: "22px", fontWeight: "500" }}
+                >
+                  Scan here to pay using UPI.
+                </Typography>
+              </CardContent>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <CardContent>
+                <Typography variant="h4" gutterBottom>
+                  Bank Information
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  <strong>Bank Name:</strong> Example Bank
+                  <br />
+                  <strong>Account Holder:</strong> Your Name
+                  <br />
+                  <strong>Account Number:</strong> 1234567890123
+                  <br />
+                  <strong>IFSC Code:</strong> ABCD0123456
+                  <br />
+                  <strong>UPI ID/VPA:</strong> 9876543210@ybl
+                </Typography>
+              </CardContent>
+            </Grid>
+          </Grid>
+        </Card>
+      </Paper>
     </Container>
   );
 };

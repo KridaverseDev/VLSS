@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 import {
   Typography,
   Paper,
@@ -12,12 +12,11 @@ import basavanna from "./basavanna.png";
 import basavanna1 from "./basavanna_img.png";
 import demo from "./demo.png";
 import pancha from "./image.png";
-import { motion } from 'framer-motion';
-import ImageSlider from "./Image";
+import { motion } from "framer-motion";
 import panc from "./IMG20240417121655.jpg";
+import ImageSlider from "./ImageSlider";
 
-const demoImages = [basavanna, basavanna1, demo,pancha,panc];
-
+const demoImages = [basavanna, basavanna1, demo, pancha, panc];
 
 const Home: React.FC = () => {
   const { breakpoints } = useTheme();
@@ -28,7 +27,8 @@ const Home: React.FC = () => {
     const animate = () => {
       if (scrollRef.current) {
         const currentScroll = scrollRef.current.scrollLeft;
-        const maxScroll = scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
+        const maxScroll =
+          scrollRef.current.scrollWidth - scrollRef.current.clientWidth;
 
         if (currentScroll >= maxScroll) {
           scrollRef.current.scrollLeft = 0;
@@ -44,7 +44,6 @@ const Home: React.FC = () => {
 
     return () => cancelAnimationFrame(requestID);
   }, []);
-
 
   return (
     <div>
@@ -73,7 +72,7 @@ const Home: React.FC = () => {
               borderRadius: matchMobileView ? "20px" : "0 30px 30px 0px",
               margin: "auto 0",
               marginTop: matchMobileView ? "0px" : "100px",
-              animation: 'slideRight 0.5s forwards',
+              animation: "slideRight 0.5s forwards",
             }}
           >
             <Box
@@ -102,12 +101,21 @@ const Home: React.FC = () => {
                 variant="body1"
                 sx={{
                   fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`, // System font stack
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                   textAlign: "justify",
                   padding: matchMobileView ? "5px 10px" : "0px 30px 0px 0px",
                 }}
               >
-                Basava, a 12th-century Indian philosopher and poet, led the Lingayat social reform movement during the reign of King Bijjala II in Karnataka. Through his Vachana poetry, he advocated against social discrimination, superstitions, and rituals, promoting devotion to Shiva. Basava introduced the Ishtalinga necklace to symbolize devotion to Shiva for all, regardless of birth. He condemned violence and established inclusive institutions like the Anubhava Mantapa for spiritual discourse. While traditionally hailed as the founder of Lingayatism, modern scholarship suggests he revitalized an existing tradition.
+                Basava, a 12th-century Indian philosopher and poet, led the
+                Lingayat social reform movement during the reign of King Bijjala
+                II in Karnataka. Through his Vachana poetry, he advocated
+                against social discrimination, superstitions, and rituals,
+                promoting devotion to Shiva. Basava introduced the Ishtalinga
+                necklace to symbolize devotion to Shiva for all, regardless of
+                birth. He condemned violence and established inclusive
+                institutions like the Anubhava Mantapa for spiritual discourse.
+                While traditionally hailed as the founder of Lingayatism, modern
+                scholarship suggests he revitalized an existing tradition.
               </Typography>
             </Box>
           </Paper>
@@ -129,29 +137,32 @@ const Home: React.FC = () => {
         <div
           ref={scrollRef}
           style={{
-            width: '100%',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            height: '50px',
-            backgroundColor: '#f0f0f0',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-          }}>
+            width: "100%",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            height: "50px",
+            backgroundColor: "#f0f0f0",
+            boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
+          }}
+        >
           <Typography
             sx={{
-              fontFamily: 'Garamond, serif',
-              fontWeight: 'bold',
-              fontSize: '20px',
-              color: '#000000', // Set text color to black
-              textShadow: '1px 1px 5px rgba(0,0,0,0.2)',
-              display: 'inline-block',
+              fontFamily: "Garamond, serif",
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "#000000", // Set text color to black
+              textShadow: "1px 1px 5px rgba(0,0,0,0.2)",
+              display: "inline-block",
             }}
           >
-            Welcome to the official website dedicated to exploring and sharing the rich heritage of the Lingayat religion... Welcome to the official website dedicated to exploring and sharing the rich heritage of the Lingayat religion...
+            Welcome to the official website dedicated to exploring and sharing
+            the rich heritage of the Lingayat religion... Welcome to the
+            official website dedicated to exploring and sharing the rich
+            heritage of the Lingayat religion...
           </Typography>
-
         </div>
       </Grid>
       <motion.div
@@ -159,7 +170,6 @@ const Home: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-
         <Paper
           elevation={matchMobileView ? 3 : 24}
           sx={{
@@ -187,23 +197,37 @@ const Home: React.FC = () => {
             sx={{ textAlign: "center", fontWeight: "800", fontSize: "32px" }}
           >
             Welcome to the
-            <span style={{ color: "#7D0B03" }}> Veerashaiva  Lingayatha Religion </span> <br />
+            <span style={{ color: "#7D0B03" }}>
+              {" "}
+              Veerashaiva Lingayatha Religion{" "}
+            </span>{" "}
+            <br />
           </Typography>
           <Typography
             variant="body1"
             sx={{
               textAlign: "justify",
               padding: matchMobileView ? "10px" : "20px 200px",
-              fontSize: matchMobileView ? "16px" : "18px", 
-              lineHeight: "1.6", 
-              letterSpacing: "0.00938em", 
+              fontSize: matchMobileView ? "16px" : "18px",
+              lineHeight: "1.6",
+              letterSpacing: "0.00938em",
               color: "rgba(0, 0, 0, 0.87)",
-              fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`, 
+              fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
             }}
           >
-            Lingayatism, a Shaivite Hindu denomination, evolved from Veerashaivism in the 12th century, emphasizing Ishtalinga worship and rejecting caste divisions. Advocating social equality, it promotes Vachanas as philosophical guides, highlighting Kayaka (work) and Dasoha (service) as acts of worship. Lingayatism diverges from mainstream Hinduism by eschewing vedic authority, rituals, and the concept of rebirth, focusing on direct divine experience. While considered a Hindu sect due to shared beliefs, it emphasizes Shiva worship and qualified monism akin to Ramanuja's philosophy. Predominant in Karnataka, Lingayats celebrate sect leaders' anniversaries and Hindu festivals, maintaining their own pilgrimage sites and religious practices within the broader Shaivite tradition.
+            Lingayatism, a Shaivite Hindu denomination, evolved from
+            Veerashaivism in the 12th century, emphasizing Ishtalinga worship
+            and rejecting caste divisions. Advocating social equality, it
+            promotes Vachanas as philosophical guides, highlighting Kayaka
+            (work) and Dasoha (service) as acts of worship. Lingayatism diverges
+            from mainstream Hinduism by eschewing vedic authority, rituals, and
+            the concept of rebirth, focusing on direct divine experience. While
+            considered a Hindu sect due to shared beliefs, it emphasizes Shiva
+            worship and qualified monism akin to Ramanuja's philosophy.
+            Predominant in Karnataka, Lingayats celebrate sect leaders'
+            anniversaries and Hindu festivals, maintaining their own pilgrimage
+            sites and religious practices within the broader Shaivite tradition.
           </Typography>
-
         </Paper>
       </motion.div>
 
@@ -218,7 +242,7 @@ const Home: React.FC = () => {
           borderRadius: matchMobileView ? "15px" : "0",
         }}
       >
-          {/* image slider */}
+        {/* image slider */}
         <ImageSlider images={demoImages} />
       </Paper>
     </div>
