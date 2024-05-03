@@ -484,6 +484,10 @@ const Form: React.FC = () => {
                       name="utrNumber"
                       value={formData.utrNumber}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "\\d{12}",
+                        title: "Please enter a valid UTR number.",
+                      }}
                     />
                   </Grid>
                 </Grid>

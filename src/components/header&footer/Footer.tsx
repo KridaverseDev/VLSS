@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Grid,
@@ -27,6 +27,10 @@ import {
 const Footer: React.FC = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const handleSubscribe = () => {
+    //backend req code here
+    alert("Subscribed successfully!");
+  };
 
   return (
     <footer
@@ -54,8 +58,8 @@ const Footer: React.FC = () => {
             <h2 className="mb-4 text-2xl tracking-tight font-bold text-black">
               Subscribe to Our Newsletter
             </h2>
-
-            <form action="#">
+            <form action="#" onSubmit={handleSubscribe}>
+              {" "}
               <div className="items-center mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
                 <div className="relative w-full">
                   <label
@@ -107,16 +111,40 @@ const Footer: React.FC = () => {
             Path,Enlightenment City, Peaceful State, 43210
           </p>
           <div className="mt-2">
-            <IconButton color="inherit" aria-label="Twitter">
+            <IconButton
+              color="inherit"
+              aria-label="Twitter"
+              component="a"
+              href="https://twitter.com/home"
+              target="_blank"
+            >
               <TwitterIcon />
             </IconButton>
-            <IconButton color="inherit" aria-label="Facebook">
+            <IconButton
+              color="inherit"
+              aria-label="Facebook"
+              component="a"
+              href="https://www.facebook.com"
+              target="_blank"
+            >
               <FacebookIcon />
             </IconButton>
-            <IconButton color="inherit" aria-label="Instagram">
+            <IconButton
+              color="inherit"
+              aria-label="Instagram"
+              component="a"
+              href="https://www.instagram.com"
+              target="_blank"
+            >
               <InstagramIcon />
             </IconButton>
-            <IconButton color="inherit" aria-label="Email">
+            <IconButton
+              color="inherit"
+              aria-label="Email"
+              component="a"
+              href="mailto:dummy@gmail.com"
+              target="_blank"
+            >
               <EmailIcon />
             </IconButton>
           </div>
