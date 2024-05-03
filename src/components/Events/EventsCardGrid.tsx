@@ -60,6 +60,7 @@ const EventCardGrid: React.FC<EventCardGridProps> = ({ events }) => {
               style={{
                 ...cardStyle,
                 backgroundImage: `url(${event.images[0]})`,
+                animation: `cardEntrance ${index * 0.5}s ease-out, in forwards`,
               }}
             >
               <CardContent style={contentStyle}>
