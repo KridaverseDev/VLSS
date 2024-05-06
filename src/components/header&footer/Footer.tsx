@@ -23,13 +23,24 @@ import {
   MDBRow,
   MDBBtn,
 } from "mdb-react-ui-kit";
+import axios from "axios";
 
 const Footer: React.FC = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const handleSubscribe = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = async () => {
     //backend req code here
-    alert("Subscribed successfully!");
+    // try {
+    //   const response = await axios.post("/subscribe", { email });
+    //   console.log(response);
+    //   alert("Sucessfully Subscribed");
+    // } catch (error) {
+    //   console.error(error);
+    //   alert("Failed to subscribe. Please try again later.");
+    // }
+    alert("Sucessfully Subscribed");
   };
 
   return (
@@ -83,7 +94,8 @@ const Footer: React.FC = () => {
                     className="block p-3 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500"
                     placeholder="Enter your email"
                     type="email"
-                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>

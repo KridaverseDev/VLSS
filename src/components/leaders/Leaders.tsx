@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import leadersData from "./leaders.json";
 import { Leader } from "./Leader";
+import { Blurhash } from "react-blurhash";
 
 import {
   Typography,
@@ -34,9 +35,27 @@ const Leaders: React.FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   // console.log(leaders);
 
   const leaders: Leader[] = leadersData.leaders;
+
+  useEffect(() => {
+    const imageLoadPromises: Promise<void>[] = leaders.map((leader) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          resolve();
+        };
+        img.src = leader.link;
+      });
+    });
+
+    Promise.all(imageLoadPromises).then(() => {
+      setImageLoaded(true);
+    });
+  }, [leaders]);
+
   return (
     <Box
       sx={{
@@ -56,7 +75,7 @@ const Leaders: React.FC = () => {
               borderRadius: "15px",
               boxShadow: isHovered ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "none",
               transition:
-                "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+                "transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out",
               cursor: "pointer",
               overflow: "hidden",
               animation: "fadeInFromBottom 0.5s ease-out",
@@ -77,6 +96,17 @@ const Leaders: React.FC = () => {
             >
               {leader.leader_name}
             </Typography>
+            <div style={{ display: imageLoaded ? "none" : "inline" }}>
+              <Blurhash
+                hash={leader.blur_image}
+                width="180px"
+                height="200px"
+                resolutionX={32}
+                resolutionY={32}
+                punch={0}
+              />
+            </div>
+
             <CardMedia
               component="img"
               height="194"
@@ -87,6 +117,9 @@ const Leaders: React.FC = () => {
                 maxHeight: "200px",
                 width: "100%",
                 margin: "auto",
+                display: !imageLoaded ? "none" : "inline",
+                opacity: imageLoaded ? 1 : 0,
+                transition: "opacity 0.5s ease-in-out",
               }}
             />
             <CardContent>
