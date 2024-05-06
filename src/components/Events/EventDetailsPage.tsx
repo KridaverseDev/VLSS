@@ -167,16 +167,18 @@ const EventDetailsPage: React.FC = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
-                  padding: "0 30px",
+                  padding: "8px 8px",
                   marginTop: "20px",
                 }}
               >
-                <Button variant="contained" disabled>
+                {/* <Button variant="contained" disabled>
                   CTA
                 </Button>
                 <Button variant="contained" sx={{ backgroundColor: "#BD2424" }}>
                   CTA
-                </Button>
+                </Button> */}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
+                vitae aspernatur repellat quia officia.
               </CardActions>
             </CardContent>
           </Card>{" "}
