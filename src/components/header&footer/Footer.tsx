@@ -29,18 +29,20 @@ const Footer: React.FC = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   const [email, setEmail] = useState("");
+  console.log(email);
 
   const handleSubscribe = async () => {
     //backend req code here
-    // try {
-    //   const response = await axios.post("/subscribe", { email });
-    //   console.log(response);
-    //   alert("Sucessfully Subscribed");
-    // } catch (error) {
-    //   console.error(error);
-    //   alert("Failed to subscribe. Please try again later.");
-    // }
-    alert("Sucessfully Subscribed");
+    try {
+      const response = await axios.post("http://localhost:8000/subscribe", {
+        email,
+      });
+      // console.log(response.data.message);
+      alert(response.data.message);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to subscribe. Please try again later.");
+    }
   };
 
   return (
@@ -69,7 +71,7 @@ const Footer: React.FC = () => {
             <h2 className="mb-4 text-2xl tracking-tight font-bold text-black">
               Subscribe to Our Newsletter
             </h2>
-            <form action="#" onSubmit={handleSubscribe}>
+            <form onSubmit={handleSubscribe}>
               {" "}
               <div className="items-center mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
                 <div className="relative w-full">
