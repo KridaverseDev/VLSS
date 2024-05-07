@@ -28,6 +28,7 @@ const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
+  const [error, setError] = useState("");
   // const [open, setOpen] = React.useState(false);
   // const [snackbarMessage, setSnackbarMessage] = useState("");
   // const [snackbarSeverity, setSnackbarSeverity] = useState("success");
@@ -52,45 +53,45 @@ const Form: React.FC = () => {
 
   const district = [
     {
-      value: "district1",
+      value: "District1",
       label: "district1",
     },
     {
-      value: "district2",
+      value: "District2",
       label: "district 2",
     },
     {
-      value: "district3",
+      value: "District3",
       label: "district 3",
     },
   ];
 
   const taluk = [
     {
-      value: "taluk1",
+      value: "Taluk1",
       label: "Taluk 1",
     },
     {
-      value: "taluk2",
+      value: "Taluk2",
       label: "Taluk 2",
     },
     {
-      value: "taluk3",
+      value: "Taluk3",
       label: "Taluk 3",
     },
   ];
 
   const amount = [
     {
-      value: "cash",
+      value: "Cash",
       label: "Cash",
     },
     {
-      value: "upi",
+      value: "UPI",
       label: "UPI",
     },
     {
-      value: "cheque",
+      value: "Cheque",
       label: "Cheque",
     },
   ];
@@ -218,6 +219,10 @@ const Form: React.FC = () => {
                       name="applicationName"
                       value={formData.applicationName}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "[A-Za-z\\s]+",
+                        title: "Please Enter a Valid Name",
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -228,6 +233,10 @@ const Form: React.FC = () => {
                       name="occupation"
                       value={formData.occupation}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "[A-Za-z\\s]+",
+                        title: "Please Enter a Valid Occupation",
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -238,6 +247,10 @@ const Form: React.FC = () => {
                       name="fatherOrHusbandName"
                       value={formData.fatherOrHusbandName}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "[A-Za-z\\s]+",
+                        title: "Please Enter a Valid Name",
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -254,7 +267,6 @@ const Form: React.FC = () => {
                       }}
                     />
                   </Grid>
-
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
@@ -263,6 +275,10 @@ const Form: React.FC = () => {
                       name="education"
                       value={formData.education}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "[A-Za-z\\s]+",
+                        title: "Please Enter a Education",
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -270,6 +286,7 @@ const Form: React.FC = () => {
                       id="bloodGroup"
                       sx={{ display: "flex" }}
                       select
+                      required
                       label="Blood Group"
                       onChange={handleInputChange}
                       name="bloodGroup"
@@ -308,6 +325,7 @@ const Form: React.FC = () => {
                       id="resTaluk"
                       sx={{ display: "flex" }}
                       select
+                      required
                       label="Taluk"
                       onChange={handleInputChange}
                       name="resTaluk"
@@ -325,6 +343,7 @@ const Form: React.FC = () => {
                       id="resDistrict"
                       sx={{ display: "flex" }}
                       select
+                      required
                       label="District"
                       onChange={handleInputChange}
                       name="resDistrict"
@@ -345,6 +364,10 @@ const Form: React.FC = () => {
                       name="resPincode"
                       value={formData.resPincode}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "^[0-9]{6}$",
+                        title: "Please Enter a 6-Digit Pincode",
+                      }}
                     />
                   </Grid>
                 </Grid>
@@ -368,6 +391,7 @@ const Form: React.FC = () => {
                       id="perTaluk"
                       sx={{ display: "flex" }}
                       select
+                      required
                       label="Taluk"
                       onChange={handleInputChange}
                       name="perTaluk"
@@ -385,6 +409,7 @@ const Form: React.FC = () => {
                       id="perDistrict"
                       sx={{ display: "flex" }}
                       select
+                      required
                       label="District"
                       onChange={handleInputChange}
                       name="perDistrict"
@@ -405,6 +430,10 @@ const Form: React.FC = () => {
                       name="perPincode"
                       value={formData.perPincode}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "^[0-9]{6}$",
+                        title: "Please Enter a 6-Digit Pincode",
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -426,6 +455,11 @@ const Form: React.FC = () => {
                       name="phoneNumber"
                       value={formData.phoneNumber}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "[0-9]{10}",
+                        title: "Please enter a 10-digit phone number",
+                        maxLength: 10,
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -436,6 +470,11 @@ const Form: React.FC = () => {
                       name="aadharNumber"
                       value={formData.aadharNumber}
                       onChange={handleInputChange}
+                      inputProps={{
+                        pattern: "[0-9]{12}",
+                        title: "Please enter a 12-digit Aadhar number",
+                        maxLength: 12,
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -444,6 +483,7 @@ const Form: React.FC = () => {
                       required
                       label="Email Id"
                       name="emailId"
+                      type="email"
                       value={formData.emailId}
                       onChange={handleInputChange}
                     />
@@ -464,6 +504,7 @@ const Form: React.FC = () => {
                       id="perDistrict"
                       sx={{ display: "flex" }}
                       select
+                      required
                       label="Amount Paid In"
                       onChange={handleInputChange}
                       name="amountPaidInCash"
@@ -511,6 +552,7 @@ const Form: React.FC = () => {
                 >
                   Save In Draft
                 </Button> */}
+                  {error && <p style={{ color: "red" }}>{error}</p>}
 
                   <Button
                     type="submit"
