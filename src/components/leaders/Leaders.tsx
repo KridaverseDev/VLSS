@@ -61,7 +61,7 @@ const Leaders: React.FC = () => {
       sx={{
         display: "flex",
         justifyContent: "space-between",
-        margin: matchMobileView ? "0px" : "0 100px",
+        margin: matchMobileView ? "0px 20px" : "0 100px",
       }}
     >
       <div className="flex flex-wrap gap-8 text-center">
@@ -78,7 +78,7 @@ const Leaders: React.FC = () => {
                 "transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out",
               cursor: "pointer",
               overflow: "hidden",
-              animation: "fadeInFromBottom 0.5s ease-out",
+              animation: "fadeInScale 2s ease-in-out",
               "&:hover": {
                 transform: isHovered ? "scale(1.05)" : "scale(1.1)",
               },
@@ -106,7 +106,6 @@ const Leaders: React.FC = () => {
                 punch={0}
               />
             </div>
-
             <CardMedia
               component="img"
               height="194"
