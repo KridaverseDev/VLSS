@@ -16,20 +16,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import president from "./photos/president.jpeg";
-import vicepresident from "./photos/vicepresident.jpeg";
-import chief from "./photos/Amaresh.jpeg";
-import joint from "./photos/harini.jpeg";
-import orgsec from "./photos/indudhara.jpeg";
-import treasurer from "./photos/nagappa.jpeg";
-import nagabhishan from "./photos/Nagabhushan.jpeg";
-import mallikarjuna from "./photos/Mallikarjuna Biradar.jpeg";
-import niranjan from "./photos/Niranjan.jpeg";
-import manjunatha from "./photos/manjunatha.jpeg";
-import kiran from "./photos/kiran.jpeg";
-import basappa from "./photos/basappa.jpeg";
-import nataraj from "./photos/nataraj.jpeg";
-import onkarappa from "./photos/onkarappa.jpeg";
 
 const Leaders: React.FC = () => {
   const { breakpoints } = useTheme();

@@ -201,11 +201,7 @@ const Form: React.FC = () => {
               <Typography variant="h4" align="center" gutterBottom>
                 Membership Application Form
               </Typography>
-              <Typography variant="body2" align="center" gutterBottom>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <br /> Curabitur eleifend suscipit semper. Nunc suscipit
-                <br /> augue sed suscipit volutpat.
-              </Typography>
+              
               <Divider
                 sx={{ margin: "10px 0px", borderTop: "1px solid #9C9C9C" }}
               />
@@ -494,7 +490,7 @@ const Form: React.FC = () => {
                       required
                       label="Membership  Fee"
                       name="membershipFee"
-                      value={1000}
+                      value={1150}
                       // onChange={handleInputChange}
                       disabled
                     />
@@ -627,16 +623,16 @@ const Form: React.FC = () => {
                   Bank Information
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  <strong>Bank Name:</strong> Example Bank
-                  <br />
-                  <strong>Account Holder:</strong> Your Name
-                  <br />
-                  <strong>Account Number:</strong> 1234567890123
-                  <br />
-                  <strong>IFSC Code:</strong> ABCD0123456
-                  <br />
-                  <strong>UPI ID/VPA:</strong> 9876543210@ybl
-                </Typography>
+                      <strong>Bank Name:</strong> HDFC Bank
+                      <br />
+                      <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA SAMRAKSHANA SAMIT
+                      <br />
+                      <strong>Account Number:</strong> 50200087185679
+                      <br />
+                      <strong>IFSC Code:</strong> HDFC0004082
+                      <br />
+                      <strong>UPI ID/VPA:</strong> Vyapar.169048627480@hdfcbank
+                    </Typography>
               </CardContent>
             </Grid>
           </Grid>

@@ -9,14 +9,13 @@ import {
   Fade,
 } from "@mui/material";
 import basavanna from "./basavanna.png";
-import basavanna1 from "./basavanna_img.png";
-import demo from "./demo.png";
 import pancha from "./image.png";
 import { motion } from "framer-motion";
 import panc from "./IMG20240417121655.jpg";
 import ImageSlider from "./ImageSlider";
+import akka from "./akka.jpg";
 
-const demoImages = [basavanna, basavanna1, demo, pancha, panc];
+const demoImages = [basavanna, akka, pancha, panc];
 
 const Home: React.FC = () => {
   const { breakpoints } = useTheme();
@@ -87,15 +86,16 @@ const Home: React.FC = () => {
                 variant="h1"
                 gutterBottom
                 style={{
-                  fontSize: "32px",
-                  fontWeight: "600",
+                  fontSize: "48px",
+                  fontWeight: "700",
+                  fontFamily: "Ubuntu",
                   padding: matchMobileView
                     ? "15px 10px 5px 5px"
                     : "30px 0px 0px 0px",
                   textAlign: matchMobileView ? "center" : "left",
                 }}
               >
-                About Guru Basavanna
+                About Guru Basaveshwara
               </Typography>
               <Typography
                 variant="body1"
@@ -153,15 +153,12 @@ const Home: React.FC = () => {
               fontFamily: "Garamond, serif",
               fontWeight: "bold",
               fontSize: "20px",
-              color: "#000000", // Set text color to black
+              color: "#000000", 
               textShadow: "1px 1px 5px rgba(0,0,0,0.2)",
               display: "inline-block",
             }}
           >
-            Welcome to the official website dedicated to exploring and sharing
-            the rich heritage of the Lingayat religion... Welcome to the
-            official website dedicated to exploring and sharing the rich
-            heritage of the Lingayat religion...
+            Welcome to the Veerashaiva Lingayatha Religion... This is non-profitable organization....  Welcome to the Veerashaiva Lingayatha Religion... This is non-profitable organization ... Welcome to the Veerashaiva Lingayatha Religion... This is non-profitable organization
           </Typography>
         </div>
       </Grid>

@@ -8,7 +8,7 @@ const cardStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-end",
-  height: 300, // Adjust height as needed
+  height: 300, 
   backgroundSize: "cover",
   borderRadius: 10,
   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -30,20 +30,7 @@ const subtitleStyle: React.CSSProperties = {
   color: "#fff",
 };
 
-// interface Event {
-//   eventId: string;
-//   // date: string;
-//   // location: string;
-//   // eventName: string;
-//   bgImageUrl: string;
-//   imageUrl: string;
-//   eventTimings: string;
-//   price: string;
-//   eventName: string;
-//   location: string;
-//   date: string;
-//   images: string[];
-// }
+
 
 interface EventCardGridProps {
   events: Event[];

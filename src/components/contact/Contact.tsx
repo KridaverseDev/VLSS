@@ -94,15 +94,15 @@ const Contact: React.FC = () => {
                       Bank Information
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      <strong>Bank Name:</strong> Example Bank
+                      <strong>Bank Name:</strong> HDFC Bank
                       <br />
-                      <strong>Account Holder:</strong> Your Name
+                      <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA SAMRAKSHANA SAMIT
                       <br />
-                      <strong>Account Number:</strong> 1234567890123
+                      <strong>Account Number:</strong> 50200087185679
                       <br />
-                      <strong>IFSC Code:</strong> ABCD0123456
+                      <strong>IFSC Code:</strong> HDFC0004082
                       <br />
-                      <strong>UPI ID/VPA:</strong> 9876543210@ybl
+                      <strong>UPI ID/VPA:</strong> Vyapar.169048627480@hdfcbank
                     </Typography>
                   </CardContent>
                 </Grid>
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                         Call:
                       </span>
                       <br />
-                      +91 8821230151
+                      +91 9972216512
                     </Typography>
                   </Grid>
                 </Grid>
@@ -197,7 +197,7 @@ const Contact: React.FC = () => {
                         Mail:
                       </span>
                       <br />
-                      abcd@gmail.com
+                      vlssr@gmail.com
                     </Typography>
                   </Grid>
                 </Grid>
@@ -240,9 +240,7 @@ const Contact: React.FC = () => {
                         Address:
                       </span>
                       <br />
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Curabitur eleifend suscipit semper. Nunc suscipit augue
-                      sed suscipit volutpat.
+                      #205, Sri subramanya driving school, Bagalur Main Rd, Dwaraka Nagara, Bengaluru, Karnataka 560063
                     </Typography>
                   </Grid>
                 </Grid>

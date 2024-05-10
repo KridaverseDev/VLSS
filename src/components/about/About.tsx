@@ -18,7 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import faqData from './faqData';
 import image1 from "./about2.png";
-import image2 from "./image2.png";
+import image2 from "./kudala.jpg";
 
 const About: React.FC = () => {
   const { breakpoints } = useTheme();
@@ -171,14 +171,7 @@ const About: React.FC = () => {
             color="text.secondary"
             component="div"
           >
-            The homeland of Veera Shaiva Lingayatism is the region of Karnataka,
-            located in the southwestern part of India. This tradition emerged in
-            the 12th century under the guidance and inspiration of Basavanna, a
-            philosopher, statesman, and social reformer. Karnataka's rich
-            cultural and historical landscape provided a fertile ground for the
-            development and spread of Lingayatism, with its message of social
-            equality, personal devotion, and community service resonating deeply
-            among the people of the region.
+          Kudalasangama is a popular pilgrimage destination for Lingayats and Veerashaivas. It is located in the Bagalkot district of Karnataka about 15 km from the Almatti Dam. It was originally known as Kappadi sangama, where Basaveshwara’s teacher Ishanaguru lived, and was later renamed Kudalasangama. Sangama is the confluence of the Krishna and Malaprabha rivers. The main deity of Kudala Sangama is Sangameshwara. It also houses Aikya Mantapa or Basavanna’s samadhi. The Kudala Sangama development board oversees this temple
           </Typography>
         </CardContent>
       </Card>

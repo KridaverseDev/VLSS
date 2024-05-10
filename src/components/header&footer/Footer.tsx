@@ -118,11 +118,11 @@ const Footer: React.FC = () => {
             Contact & Follow Us
           </h2>
           <p className="">
-            <span className="font-medium">Email:</span> info@lingayatfaith.org{" "}
+            <span className="font-medium">Email:</span> vlssr@gmail.com{" "}
             <br />
-            <span className="font-medium">Phone:</span> +123 456 7890 <br />
-            <span className="font-medium">Address:</span> 108 Divine
-            Path,Enlightenment City, Peaceful State, 43210
+            <span className="font-medium">Phone:</span> +91 9886722060, +91 991688789, +91 9972216512<br />
+            <span className="font-medium">Address:</span> #205, Sri subramanya driving school, Bagalur Main Rd,
+ Dwaraka Nagara, Bengaluru, Karnataka 560063
           </p>
           <div className="mt-2">
             <IconButton
@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
               color="inherit"
               aria-label="Email"
               component="a"
-              href="mailto:dummy@gmail.com"
+              href="mailto:vlssr@gmail.com"
               target="_blank"
             >
               <EmailIcon />

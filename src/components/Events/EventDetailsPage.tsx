@@ -17,16 +17,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// interface Event {
-//   eventId: string;
-//   date: string;
-//   location: string;
-//   eventName: string;
-//   bgImageUrl: string;
-//   imageUrl: string;
-//   eventTimings: string;
-//   price: string;
-// }
+
 
 interface SliderImage {
   imageUrl: string;
@@ -35,9 +26,7 @@ interface SliderImage {
 const EventDetailsPage: React.FC = () => {
   const { eventId } = useParams<{ eventId: any }>();
 
-  // const event: Event | undefined = eventsData.events.find(
-  //   (event) => event.eventId === eventId
-  // );
+  
   const event: Event | undefined = eventsData?.events.find(
     (event, index) => index.toString() === eventId
   );
