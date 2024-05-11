@@ -14,8 +14,10 @@ import { motion } from "framer-motion";
 import panc from "./IMG20240417121655.jpg";
 import ImageSlider from "./ImageSlider";
 import akka from "./akka.jpg";
+import shivaji from "./shivaji.jpeg";
+import REVERED from "./REVERED.jpeg";
 
-const demoImages = [basavanna, akka, pancha, panc];
+const demoImages = [basavanna, akka,shivaji,REVERED,pancha, panc];
 
 const Home: React.FC = () => {
   const { breakpoints } = useTheme();
