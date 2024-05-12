@@ -19,7 +19,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 
-interface SliderImage {
+interface SliderImage { 
   imageUrl: string;
 }
 
@@ -160,14 +160,7 @@ const EventDetailsPage: React.FC = () => {
                   marginTop: "20px",
                 }}
               >
-                {/* <Button variant="contained" disabled>
-                  CTA
-                </Button>
-                <Button variant="contained" sx={{ backgroundColor: "#BD2424" }}>
-                  CTA
-                </Button> */}
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
-                vitae aspernatur repellat quia officia.
+              {event.description}
               </CardActions>
             </CardContent>
           </Card>{" "}

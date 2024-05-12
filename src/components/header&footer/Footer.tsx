@@ -177,7 +177,7 @@ const Footer: React.FC = () => {
       <div className="counter float-right flex gap-1">
         <span className="font-medium">Total Visits :</span>
         <img
-          src="https://hitwebcounter.com/counter/counter.php?page=12954542&style=0006&nbdigits=5&type=page&initCount=0"
+          src="https://hitwebcounter.com/counter/counter.php?page=12954542&style=0006&nbdigits=6&type=page&initCount=0"
           title="Counter Widget"
           alt="Visit counter For Websites"
         />

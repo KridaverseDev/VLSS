@@ -1,9 +1,10 @@
 {
   "events": [
     {
-      "eventName": "Shiva kumar Swamy ji Birthday",
+      "eventName": "Shivakumar swamiji birthday",
       "location": "Bangalore",
-      "date": "29-04-2024",
+      "date": "01-04-2024",
+      "description":"Celebrating the birthday of Shivakumar Swamiji, the Veerashaiva Lingayatha Samrakshana Samithi (VLSS) orchestrated a profound event, honoring his spiritual legacy and teachings.",
       "images": [
         "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/shivakumar%2FIMG_7420.jpg?alt=media&token=1eae7beb-bc00-434e-96ea-1b8edf02a4b1",
         "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/shivakumar%2FIMG_7421.jpg?alt=media&token=8150d3c3-853a-4c52-88ba-d33c192f6c38",
@@ -83,7 +84,8 @@
     {
       "eventName": "Blood dontation",
       "location": "Bangalore",
-      "date": "28-04-2024",
+      "date": "17-03-24",
+      "description":"The Veerashaiva Lingayatha Samrakshana Samithi (VLSS) organized a commendable blood donation camp, reflecting their commitment to humanitarian service and community welfare.",
       "images": [
         "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/blooddontation%2FWhatsApp%20Image%202024-04-06%20at%2010.42.48.jpeg?alt=media&token=f20f2fa4-c039-41b9-811b-f12dc4be566b",
         "https://firebasestorage.googleapis.com/v0/b/vlss-15714.appspot.com/o/blooddontation%2FWhatsApp%20Image%202024-04-06%20at%2010.42.49.jpeg?alt=media&token=aa5f374b-10b6-4687-8b40-3f1393503309",
