@@ -34,10 +34,11 @@ const Footer: React.FC = () => {
   const handleSubscribe = async () => {
     //backend req code here
     try {
-      const response = await axios.post("http://localhost:8000/subscribe", {
+      const response = await axios.post("https://vlssrbackend-483fdd4e7516.herokuapp.com/subscribe", {
         email,
       });
-      // console.log(response.data.message);
+      console.log("ssaswws");
+       console.log(response.data.message);
       alert(response.data.message);
     } catch (error) {
       console.error(error);

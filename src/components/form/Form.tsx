@@ -23,25 +23,14 @@ import PDFDocument from "./pdfcreation";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import axios from "axios";
 import qrCodeImage from "../contact/QR.png";
+import { districtsAndTaluks } from './taluk';
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [error, setError] = useState("");
-  // const [open, setOpen] = React.useState(false);
-  // const [snackbarMessage, setSnackbarMessage] = useState("");
-  // const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-  // const handleClose = (
-  //   event?: React.SyntheticEvent | Event,
-  //   reason?: string
-  // ) => {
-  //   if (reason === "clickaway") {
-  //     return;
-  //   }
-  //   setOpen(false);
-  // };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -51,36 +40,21 @@ const Form: React.FC = () => {
     }));
   };
 
-  const district = [
-    {
-      value: "District1",
-      label: "district1",
-    },
-    {
-      value: "District2",
-      label: "district 2",
-    },
-    {
-      value: "District3",
-      label: "district 3",
-    },
-  ];
 
-  const taluk = [
-    {
-      value: "Taluk1",
-      label: "Taluk 1",
-    },
-    {
-      value: "Taluk2",
-      label: "Taluk 2",
-    },
-    {
-      value: "Taluk3",
-      label: "Taluk 3",
-    },
-  ];
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('');
+  const [selectedTaluk, setSelectedTaluk] = useState<string>('');
 
+
+
+  const handleDistrictChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
+    const districtName = event.target.value as string;
+    setSelectedDistrict(districtName);
+  };
+  
+  // Add this useEffect to reset taluk when district changes
+  React.useEffect(() => {
+    setSelectedTaluk('');
+  }, [selectedDistrict]);
   const amount = [
     {
       value: "Cash",
@@ -135,7 +109,7 @@ const Form: React.FC = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8000/formDetails",
+        "https://vlssrbackend-483fdd4e7516.herokuapp.com/formDetails",
         formData,
         {
           responseType: "blob",
@@ -201,7 +175,7 @@ const Form: React.FC = () => {
               <Typography variant="h4" align="center" gutterBottom>
                 Membership Application Form
               </Typography>
-              
+
               <Divider
                 sx={{ margin: "10px 0px", borderTop: "1px solid #9C9C9C" }}
               />
@@ -318,40 +292,38 @@ const Form: React.FC = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      id="resTaluk"
-                      sx={{ display: "flex" }}
-                      select
-                      required
-                      label="Taluk"
-                      onChange={handleInputChange}
-                      name="resTaluk"
-                      value={formData.resTaluk}
-                    >
-                      {taluk.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
                       id="resDistrict"
                       sx={{ display: "flex" }}
                       select
                       required
                       label="District"
-                      onChange={handleInputChange}
+                      onChange={handleDistrictChange}
                       name="resDistrict"
-                      value={formData.resDistrict}
+                      value={selectedDistrict}
                     >
-                      {district.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
+                      {districtsAndTaluks["Karnataka"]["districts"].map((district: any, index: number) => (
+                        <option key={index} value={district.name}>{district.name}</option>
                       ))}
                     </TextField>
                   </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="resTaluk"
+                      sx={{ display: "flex" }}
+                      select
+                      required
+                      label="Taluk"
+                      onChange={(event) => setSelectedTaluk(event.target.value as string)} // No need for handleInputChange
+                      name="resTaluk"
+                      value={selectedTaluk}
+                    >
+                      {districtsAndTaluks["Karnataka"]["districts"].find((district: any) => district.name === selectedDistrict)?.taluks.map((taluk: string, index: number) => (
+                        <option key={index} value={taluk}>{taluk}</option>
+                      ))}
+
+                    </TextField>
+                  </Grid>
+
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
@@ -382,24 +354,7 @@ const Form: React.FC = () => {
                       onChange={handleInputChange}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      id="perTaluk"
-                      sx={{ display: "flex" }}
-                      select
-                      required
-                      label="Taluk"
-                      onChange={handleInputChange}
-                      name="perTaluk"
-                      value={formData.perTaluk}
-                    >
-                      {taluk.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  </Grid>
+
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="perDistrict"
@@ -411,10 +366,24 @@ const Form: React.FC = () => {
                       name="perDistrict"
                       value={formData.perDistrict}
                     >
-                      {district.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
+                      {districtsAndTaluks['Karnataka'].districts.map((district, index) => (
+                        <option key={index} value={district.name}>{district.name}</option>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      id="perTaluk"
+                      sx={{ display: "flex" }}
+                      select
+                      required
+                      label="Taluk"
+                      onChange={handleInputChange}
+                      name="perTaluk"
+                      value={formData.perTaluk}
+                    >
+                      {districtsAndTaluks['Karnataka'].districts.find(district => district.name === selectedDistrict)?.taluks.map((taluk, index) => (
+                        <option key={index} value={taluk}>{taluk}</option>
                       ))}
                     </TextField>
                   </Grid>
@@ -623,16 +592,16 @@ const Form: React.FC = () => {
                   Bank Information
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                      <strong>Bank Name:</strong> HDFC Bank
-                      <br />
-                      <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA SAMRAKSHANA SAMIT
-                      <br />
-                      <strong>Account Number:</strong> 50200087185679
-                      <br />
-                      <strong>IFSC Code:</strong> HDFC0004082
-                      <br />
-                      <strong>UPI ID/VPA:</strong> Vyapar.169048627480@hdfcbank
-                    </Typography>
+                  <strong>Bank Name:</strong> HDFC Bank
+                  <br />
+                  <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA SAMRAKSHANA SAMIT
+                  <br />
+                  <strong>Account Number:</strong> 50200087185679
+                  <br />
+                  <strong>IFSC Code:</strong> HDFC0004082
+                  <br />
+                  <strong>UPI ID/VPA:</strong> Vyapar.169048627480@hdfcbank
+                </Typography>
               </CardContent>
             </Grid>
           </Grid>
