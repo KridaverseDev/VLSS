@@ -23,7 +23,7 @@ import PDFDocument from "./pdfcreation";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import axios from "axios";
 import qrCodeImage from "../contact/QR.png";
-import { districtsAndTaluks } from './taluk';
+import { districtsAndTaluks } from "./taluk";
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -31,29 +31,28 @@ const Form: React.FC = () => {
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [error, setError] = useState("");
 
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    if (name === "resDistrict") {
+      setSelectedDistrict(value); 
+    } else if (name === "perDistrict") {
+      setSelectedPerDistrict(value); 
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("");
+  const [selectedTaluk, setSelectedTaluk] = useState<string>("");
 
-  const [selectedDistrict, setSelectedDistrict] = useState<string>('');
-  const [selectedTaluk, setSelectedTaluk] = useState<string>('');
+  const [selectedPerDistrict, setSelectedPerDistrict] = useState<string>("");
+  const [selectedPerTaluk, setSelectedPerTaluk] = useState<string>("");
 
-
-
-  const handleDistrictChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
-    const districtName = event.target.value as string;
-    setSelectedDistrict(districtName);
-  };
-  
   // Add this useEffect to reset taluk when district changes
   React.useEffect(() => {
-    setSelectedTaluk('');
+    setSelectedTaluk("");
   }, [selectedDistrict]);
   const amount = [
     {
@@ -132,6 +131,8 @@ const Form: React.FC = () => {
       console.error(error);
     }
   };
+
+  console.log(formData);
 
   return (
     <Container sx={{ diaply: "flex", justifyContent: "space-between" }}>
@@ -290,6 +291,7 @@ const Form: React.FC = () => {
                       onChange={handleInputChange}
                     />
                   </Grid>
+
                   <Grid item xs={12} sm={6}>
                     <TextField
                       id="resDistrict"
@@ -297,13 +299,17 @@ const Form: React.FC = () => {
                       select
                       required
                       label="District"
-                      onChange={handleDistrictChange}
+                      onChange={handleInputChange}
                       name="resDistrict"
-                      value={selectedDistrict}
+                      value={formData.resDistrict}
                     >
-                      {districtsAndTaluks["Karnataka"]["districts"].map((district: any, index: number) => (
-                        <option key={index} value={district.name}>{district.name}</option>
-                      ))}
+                      {districtsAndTaluks["Karnataka"].districts.map(
+                        (district, index) => (
+                          <MenuItem key={index} value={district.name}>
+                            {district.name}
+                          </MenuItem>
+                        )
+                      )}
                     </TextField>
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -313,14 +319,17 @@ const Form: React.FC = () => {
                       select
                       required
                       label="Taluk"
-                      onChange={(event) => setSelectedTaluk(event.target.value as string)} // No need for handleInputChange
+                      onChange={handleInputChange}
                       name="resTaluk"
-                      value={selectedTaluk}
+                      value={formData.resTaluk}
                     >
-                      {districtsAndTaluks["Karnataka"]["districts"].find((district: any) => district.name === selectedDistrict)?.taluks.map((taluk: string, index: number) => (
-                        <option key={index} value={taluk}>{taluk}</option>
-                      ))}
-
+                      {districtsAndTaluks["Karnataka"].districts
+                        .find((district) => district.name === selectedDistrict)
+                        ?.taluks.map((taluk, index) => (
+                          <MenuItem key={index} value={taluk}>
+                            {taluk}
+                          </MenuItem>
+                        ))}
                     </TextField>
                   </Grid>
 
@@ -366,9 +375,13 @@ const Form: React.FC = () => {
                       name="perDistrict"
                       value={formData.perDistrict}
                     >
-                      {districtsAndTaluks['Karnataka'].districts.map((district, index) => (
-                        <option key={index} value={district.name}>{district.name}</option>
-                      ))}
+                      {districtsAndTaluks["Karnataka"].districts.map(
+                        (district, index) => (
+                          <MenuItem key={index} value={district.name}>
+                            {district.name}
+                          </MenuItem>
+                        )
+                      )}
                     </TextField>
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -382,9 +395,15 @@ const Form: React.FC = () => {
                       name="perTaluk"
                       value={formData.perTaluk}
                     >
-                      {districtsAndTaluks['Karnataka'].districts.find(district => district.name === selectedDistrict)?.taluks.map((taluk, index) => (
-                        <option key={index} value={taluk}>{taluk}</option>
-                      ))}
+                      {districtsAndTaluks["Karnataka"].districts
+                        .find(
+                          (district) => district.name === selectedPerDistrict
+                        )
+                        ?.taluks.map((taluk, index) => (
+                          <MenuItem key={index} value={taluk}>
+                            {taluk}
+                          </MenuItem>
+                        ))}
                     </TextField>
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -594,7 +613,8 @@ const Form: React.FC = () => {
                 <Typography variant="body2" color="text.secondary">
                   <strong>Bank Name:</strong> HDFC Bank
                   <br />
-                  <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA SAMRAKSHANA SAMIT
+                  <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA
+                  SAMRAKSHANA SAMIT
                   <br />
                   <strong>Account Number:</strong> 50200087185679
                   <br />
