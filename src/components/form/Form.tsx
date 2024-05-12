@@ -34,9 +34,9 @@ const Form: React.FC = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "resDistrict") {
-      setSelectedDistrict(value); 
+      setSelectedDistrict(value);
     } else if (name === "perDistrict") {
-      setSelectedPerDistrict(value); 
+      setSelectedPerDistrict(value);
     }
     setFormData((prevData) => ({
       ...prevData,
@@ -49,6 +49,9 @@ const Form: React.FC = () => {
 
   const [selectedPerDistrict, setSelectedPerDistrict] = useState<string>("");
   const [selectedPerTaluk, setSelectedPerTaluk] = useState<string>("");
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<string>("");
 
   // Add this useEffect to reset taluk when district changes
   React.useEffect(() => {
@@ -104,6 +107,12 @@ const Form: React.FC = () => {
     },
   ];
 
+  const handlePaymentMethodChange = (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => {
+    setSelectedPaymentMethod(event.target.value as string);
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
@@ -132,7 +141,7 @@ const Form: React.FC = () => {
     }
   };
 
-  console.log(formData);
+  // console.log(formData);
 
   return (
     <Container sx={{ diaply: "flex", justifyContent: "space-between" }}>
@@ -483,16 +492,20 @@ const Form: React.FC = () => {
                       disabled
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={selectedPaymentMethod === "UPI" ? 6 : 12}
+                  >
                     <TextField
-                      id="perDistrict"
+                      id="amountPaidInCash"
                       sx={{ display: "flex" }}
                       select
                       required
                       label="Amount Paid In"
-                      onChange={handleInputChange}
+                      onChange={handlePaymentMethodChange}
                       name="amountPaidInCash"
-                      value={formData.amountPaidInCash}
+                      value={selectedPaymentMethod}
                     >
                       {amount.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
@@ -501,20 +514,22 @@ const Form: React.FC = () => {
                       ))}
                     </TextField>
                   </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      required
-                      label="Enter UTR Number"
-                      name="utrNumber"
-                      value={formData.utrNumber}
-                      onChange={handleInputChange}
-                      inputProps={{
-                        pattern: "\\d{12}",
-                        title: "Please enter a valid UTR number.",
-                      }}
-                    />
-                  </Grid>
+                  {selectedPaymentMethod === "UPI" && (
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        fullWidth
+                        required
+                        label="Enter UTR Number"
+                        name="utrNumber"
+                        value={formData.utrNumber}
+                        onChange={handleInputChange}
+                        inputProps={{
+                          pattern: "\\d{12}",
+                          title: "Please enter a valid UTR number.",
+                        }}
+                      />
+                    </Grid>
+                  )}
                 </Grid>
                 <Grid
                   sx={{
