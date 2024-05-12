@@ -53,7 +53,6 @@ const Form: React.FC = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<string>("");
 
-  // Add this useEffect to reset taluk when district changes
   React.useEffect(() => {
     setSelectedTaluk("");
   }, [selectedDistrict]);
@@ -110,7 +109,12 @@ const Form: React.FC = () => {
   const handlePaymentMethodChange = (
     event: React.ChangeEvent<{ value: unknown }>
   ) => {
-    setSelectedPaymentMethod(event.target.value as string);
+    const paymentMethod = event.target.value as string;
+    setSelectedPaymentMethod(paymentMethod);
+    setFormData((prevData) => ({
+      ...prevData,
+      amountPaidInCash: paymentMethod,
+    }));
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
