@@ -31,18 +31,27 @@ const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
   console.log(email);
 
-  const handleSubscribe = async () => {
-    //backend req code here
+  const handleSubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     try {
-      const response = await axios.post("https://vlssrbackend-483fdd4e7516.herokuapp.com/subscribe", {
-        email,
-      });
-      console.log("ssaswws");
-       console.log(response.data.message);
-      alert(response.data.message);
-    } catch (error) {
+      const response = await axios.post(
+        "https://vlssrbackend-483fdd4e7516.herokuapp.com/subscribe",
+        {
+          email,
+        }
+      );
+      const responseData = response.data;
+      console.log(responseData);
+      alert(responseData.message);
+      setEmail("");
+    } catch (error: any) {
       console.error(error);
-      alert("Failed to subscribe. Please try again later.");
+      if (error.response && error.response.status === 400) {
+        alert("You have already subscribed!");
+      } else {
+        alert("Failed to subscribe. Please try again later.");
+      }
+      setEmail("");
     }
   };
 
@@ -119,11 +128,13 @@ const Footer: React.FC = () => {
             Contact & Follow Us
           </h2>
           <p className="">
-            <span className="font-medium">Email:</span> vlssr@gmail.com{" "}
+            <span className="font-medium">Email:</span> vlssr@gmail.com <br />
+            <span className="font-medium">Phone:</span> +91 9886722060, +91
+            991688789, +91 9972216512
             <br />
-            <span className="font-medium">Phone:</span> +91 9886722060, +91 991688789, +91 9972216512<br />
-            <span className="font-medium">Address:</span> #205, Sri subramanya driving school, Bagalur Main Rd,
- Dwaraka Nagara, Bengaluru, Karnataka 560063
+            <span className="font-medium">Address:</span> #205, Sri subramanya
+            driving school, Bagalur Main Rd, Dwaraka Nagara, Bengaluru,
+            Karnataka 560063
           </p>
           <div className="mt-2">
             <IconButton
