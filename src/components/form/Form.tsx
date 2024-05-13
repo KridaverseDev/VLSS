@@ -17,6 +17,10 @@ import {
   Card,
   CardContent,
   CardMedia,
+  Dialog,
+  DialogContent,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
 import initialFormData, { FormData } from "./FormData";
 import PDFDocument from "./pdfcreation";
@@ -24,6 +28,7 @@ import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import axios from "axios";
 import qrCodeImage from "../contact/QR.png";
 import { districtsAndTaluks } from "./taluk";
+import InfoIcon from "@mui/icons-material/Info";
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -52,6 +57,16 @@ const Form: React.FC = () => {
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<string>("");
+
+  const [showInfoPopup, setShowInfoPopup] = useState(false);
+
+  const handleInfoButtonClick = () => {
+    setShowInfoPopup(true);
+  };
+
+  const handleCloseInfoPopup = () => {
+    setShowInfoPopup(false);
+  };
 
   React.useEffect(() => {
     setSelectedTaluk("");
@@ -487,13 +502,22 @@ const Form: React.FC = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                      id="membershipFee"
                       fullWidth
                       required
-                      label="Membership  Fee"
+                      label="Membership Fee"
                       name="membershipFee"
                       value={1150}
-                      // onChange={handleInputChange}
                       disabled
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={handleInfoButtonClick}>
+                              <InfoIcon />
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
                   <Grid
@@ -586,6 +610,13 @@ const Form: React.FC = () => {
           </Paper>
         </Grid>
       </Grid>
+      <Dialog open={showInfoPopup} onClose={handleCloseInfoPopup}>
+        <DialogContent>
+          <Typography variant="body1">
+            ₹1000 For Application Fee, ₹150 for ID Card
+          </Typography>
+        </DialogContent>
+      </Dialog>
       <Paper
         elevation={12}
         sx={{
