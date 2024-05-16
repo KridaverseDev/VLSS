@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EventCardGrid from "./EventsCardGrid";
-// import eventsData from "./EventData";
-import eventsData from "./shivakumar_event_data.json";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, CircularProgress, Alert } from "@mui/material";
+import axios from "axios";
+import { Event } from "./EventsType";
 
 const Events: React.FC = () => {
-  const events = eventsData.events;
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/events");
+        setEvents(response.data.events);
+        console.log(response.data.events);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  console.log("eventsss", events);
+
   return (
-    <Box
-      sx={{
-        margin: "30px 50px 0px 60px",
-      }}
-    >
+    <Box sx={{ margin: "30px 50px 0px 60px" }}>
       <Typography
         sx={{
           fontSize: "28px",

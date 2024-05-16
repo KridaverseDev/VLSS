@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Event } from "./EventsType";
 import {
@@ -9,31 +9,41 @@ import {
   CardContent,
   Grid,
   Typography,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
-// import eventsData from "./EventData";
-import eventsData from "./shivakumar_event_data.json";
-import image1 from "./image1.png";
+import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-
-interface SliderImage { 
+interface SliderImage {
   imageUrl: string;
 }
 
 const EventDetailsPage: React.FC = () => {
-  const { eventId } = useParams<{ eventId: any }>();
+  const { eventId } = useParams<{ eventId: string }>();
+  // console.log(eventId);
 
-  
-  const event: Event | undefined = eventsData?.events.find(
-    (event, index) => index.toString() === eventId
-  );
+  const [event, setEvent] = useState<Event | null>(null);
 
-  if (!event) {
-    return <Typography variant="h6">Event not found.</Typography>;
-  }
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/events/${eventId}`
+        );
+        setEvent(response.data);
+        // console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchEvent();
+  }, [eventId]);
+
+  // console.log(event);
 
   const sliderSettings = {
     dots: false,
@@ -57,7 +67,7 @@ const EventDetailsPage: React.FC = () => {
         <Grid item xs={12} sm={8}>
           <Card sx={{}}>
             <Slider {...sliderSettings}>
-              {event.images.map((image, index) => (
+              {event?.images.map((image, index) => (
                 <div key={index}>
                   <Card
                     sx={{
@@ -101,7 +111,7 @@ const EventDetailsPage: React.FC = () => {
                   fontWeight: "600",
                 }}
               >
-                {event.eventName}
+                {event?.eventName}
               </Typography>
               <Typography
                 sx={{
@@ -110,7 +120,7 @@ const EventDetailsPage: React.FC = () => {
                   fontFamily: "Poppins, sans-serif",
                 }}
               >
-                {event.date}
+                {event?.date}
               </Typography>
               <Typography
                 sx={{
@@ -128,7 +138,7 @@ const EventDetailsPage: React.FC = () => {
                   fontFamily: "Poppins, sans-serif",
                 }}
               >
-                {event.location}
+                {event?.location}
               </Typography>
             </CardContent>
           </Card>
@@ -160,10 +170,10 @@ const EventDetailsPage: React.FC = () => {
                   marginTop: "20px",
                 }}
               >
-              {event.description}
+                {event?.description}
               </CardActions>
             </CardContent>
-          </Card>{" "}
+          </Card>
         </Grid>
       </Grid>
     </Box>
