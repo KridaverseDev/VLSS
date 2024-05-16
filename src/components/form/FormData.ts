@@ -43,7 +43,7 @@ const initialFormData: FormData = {
   phoneNumber: "",
   aadharNumber: "",
   emailId: "",
-  membershipFee: "1000",
+  membershipFee: "1150",
   amountPaidInCash: "",
   utrNumber: "",
 };
