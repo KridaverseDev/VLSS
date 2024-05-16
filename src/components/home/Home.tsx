@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   Typography,
   Paper,
@@ -9,22 +9,34 @@ import {
   Fade,
 } from "@mui/material";
 import basavanna from "./basavanna.png";
-import pancha from "./image.png";
 import { motion } from "framer-motion";
-import panc from "./IMG20240417121655.jpg";
 import ImageSlider from "./ImageSlider";
-import akka from "./akka.jpg";
-import shivaji from "./shivaji.jpeg";
-import REVERED from "./REVERED.jpeg";
-
-const demoImages = [basavanna, akka,shivaji,REVERED,pancha, panc];
+import axios from "axios";
 
 const Home: React.FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
-  const scrollRef = useRef<HTMLDivElement>(null); // Specify the element type
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/image-sliders");
+        // console.log(response.data);
+
+        const enabledImages = response.data
+          .filter((image: any) => image.enable)
+          .map((image: any) => image.imageurl);
+        // console.log(enabledImages);
+
+        setImages(enabledImages);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
     const animate = () => {
       if (scrollRef.current) {
         const currentScroll = scrollRef.current.scrollLeft;
@@ -45,6 +57,8 @@ const Home: React.FC = () => {
 
     return () => cancelAnimationFrame(requestID);
   }, []);
+
+  // console.log(images);
 
   return (
     <div>
@@ -155,12 +169,16 @@ const Home: React.FC = () => {
               fontFamily: "Garamond, serif",
               fontWeight: "bold",
               fontSize: "20px",
-              color: "#000000", 
+              color: "#000000",
               textShadow: "1px 1px 5px rgba(0,0,0,0.2)",
               display: "inline-block",
             }}
           >
-            Welcome to the Veerashaiva Lingayatha Religion... This is non-profitable organization....  Welcome to the Veerashaiva Lingayatha Religion... This is non-profitable organization ... Welcome to the Veerashaiva Lingayatha Religion... This is non-profitable organization
+            Welcome to the Veerashaiva Lingayatha Religion... This is
+            non-profitable organization.... Welcome to the Veerashaiva
+            Lingayatha Religion... This is non-profitable organization ...
+            Welcome to the Veerashaiva Lingayatha Religion... This is
+            non-profitable organization
           </Typography>
         </div>
       </Grid>
@@ -242,7 +260,7 @@ const Home: React.FC = () => {
         }}
       >
         {/* image slider */}
-        <ImageSlider images={demoImages} />
+        <ImageSlider images={images} />
       </Paper>
     </div>
   );
