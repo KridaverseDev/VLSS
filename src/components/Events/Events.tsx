@@ -10,7 +10,9 @@ const Events: React.FC = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/events");
+        const response = await axios.get(
+          "https://vlssrbackend-483fdd4e7516.herokuapp.com/events"
+        );
         setEvents(response.data.events);
         console.log(response.data.events);
       } catch (error) {

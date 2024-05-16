@@ -22,7 +22,9 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/image-sliders");
+        const response = await axios.get(
+          "https://vlssrbackend-483fdd4e7516.herokuapp.com/image-sliders"
+        );
         // console.log(response.data);
 
         const enabledImages = response.data

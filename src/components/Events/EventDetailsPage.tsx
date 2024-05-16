@@ -31,7 +31,7 @@ const EventDetailsPage: React.FC = () => {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/events/${eventId}`
+          `https://vlssrbackend-483fdd4e7516.herokuapp.com/events/${eventId}`
         );
         setEvent(response.data);
         // console.log(response.data);
