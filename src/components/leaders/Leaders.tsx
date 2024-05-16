@@ -22,7 +22,7 @@ const Leaders: React.FC = () => {
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  // console.log(leaders);
+  console.log(leadersData);
 
   const leaders: Leader[] = leadersData.leaders;
 
