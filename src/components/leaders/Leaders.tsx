@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import leadersData from "./leaders.json";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Leader } from "./Leader";
-import { Blurhash } from "react-blurhash";
-
 import {
   Typography,
-  Paper,
-  Grid,
   Box,
   Card,
   CardContent,
   CardMedia,
-  Divider,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -21,36 +15,54 @@ const Leaders: React.FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [isHovered, setIsHovered] = useState(false);
+  const [leaders, setLeaders] = useState<Leader[]>([]);
   const [imageLoaded, setImageLoaded] = useState(false);
-  console.log(leadersData);
-
-  const leaders: Leader[] = leadersData.leaders;
 
   useEffect(() => {
-    const imageLoadPromises: Promise<void>[] = leaders.map((leader) => {
-      return new Promise<void>((resolve) => {
-        const img = new Image();
-        img.onload = () => {
-          resolve();
-        };
-        img.src = leader.link;
-      });
-    });
+    axios
+      .get("https://vlssrbackend-483fdd4e7516.herokuapp.com/leaders")
+      .then((response) => {
+        const enabledLeaders = response.data.leaders.filter(
+          (leader: Leader) => leader.enable
+        );
+        setLeaders(enabledLeaders);
 
-    Promise.all(imageLoadPromises).then(() => {
-      setImageLoaded(true);
-    });
-  }, [leaders]);
+        const imageLoadPromises: Promise<void>[] = enabledLeaders.map(
+          (leader: Leader) => {
+            return new Promise<void>((resolve) => {
+              const img = new Image();
+              img.onload = () => {
+                resolve();
+              };
+              img.src = leader.link;
+            });
+          }
+        );
+
+        Promise.all(imageLoadPromises).then(() => {
+          setImageLoaded(true);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching leaders:", error);
+      });
+  }, []);
 
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: matchMobileView ? "center" : "space-between",
         margin: matchMobileView ? "0px 20px" : "0 100px",
       }}
     >
-      <div className="flex flex-wrap gap-8 text-center">
+      <div
+        className="flex flex-wrap gap-8 text-center"
+        style={{
+          justifyContent: matchMobileView ? "center" : "flex-start",
+          width: "100%",
+        }}
+      >
         {leaders.map((leader, index) => (
           <Card
             key={index}
@@ -82,16 +94,6 @@ const Leaders: React.FC = () => {
             >
               {leader.leader_name}
             </Typography>
-            <div style={{ display: imageLoaded ? "none" : "inline" }}>
-              <Blurhash
-                hash={leader.blur_image}
-                width="180px"
-                height="200px"
-                resolutionX={32}
-                resolutionY={32}
-                punch={0}
-              />
-            </div>
             <CardMedia
               component="img"
               height="194"
@@ -105,6 +107,7 @@ const Leaders: React.FC = () => {
                 display: !imageLoaded ? "none" : "inline",
                 opacity: imageLoaded ? 1 : 0,
                 transition: "opacity 0.5s ease-in-out",
+                objectFit: "contain",
               }}
             />
             <CardContent>
