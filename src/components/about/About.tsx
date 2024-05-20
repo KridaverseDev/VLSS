@@ -12,18 +12,20 @@ import {
   useMediaQuery,
   useTheme,
   IconButton,
-  Grid
+  Grid,
 } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import faqData from './faqData';
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import faqData from "./faqData";
 import image1 from "./about2.png";
 import image2 from "./kudala.jpg";
 
 const About: React.FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
-  const [showAnswers, setShowAnswers] = useState(new Array(faqData.length).fill(false));
+  const [showAnswers, setShowAnswers] = useState(
+    new Array(faqData.length).fill(false)
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const About: React.FC = () => {
     return () => {
       setIsOpen(false);
     };
-  }, []); 
+  }, []);
 
   return (
     <Box>
@@ -60,7 +62,12 @@ const About: React.FC = () => {
         >
           <Typography
             variant="h5"
-            sx={{ textAlign: matchMobileView ? "center" : "left", marginBottom: "20px", color: "#333", textTransform: "uppercase" }}
+            sx={{
+              textAlign: matchMobileView ? "center" : "left",
+              marginBottom: "20px",
+              color: "#de2a1b",
+              textTransform: "uppercase",
+            }}
           >
             Introduction
           </Typography>
@@ -115,7 +122,6 @@ const About: React.FC = () => {
               maxHeight: "400px",
               borderRadius: "15px", // Add border radius
               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // Add box shadow
-
             }}
             image={image1}
             alt="Live from space album cover"
@@ -149,7 +155,7 @@ const About: React.FC = () => {
             textAlign: "justify",
           }}
         >
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h5" style={{ color: "#de2a1b" }}>
             Location and homeland
           </Typography>
           {matchMobileView && (
@@ -171,7 +177,14 @@ const About: React.FC = () => {
             color="text.secondary"
             component="div"
           >
-          Kudalasangama is a popular pilgrimage destination for Lingayats and Veerashaivas. It is located in the Bagalkot district of Karnataka about 15 km from the Almatti Dam. It was originally known as Kappadi sangama, where Basaveshwara’s teacher Ishanaguru lived, and was later renamed Kudalasangama. Sangama is the confluence of the Krishna and Malaprabha rivers. The main deity of Kudala Sangama is Sangameshwara. It also houses Aikya Mantapa or Basavanna’s samadhi. The Kudala Sangama development board oversees this temple
+            Kudalasangama is a popular pilgrimage destination for Lingayats and
+            Veerashaivas. It is located in the Bagalkot district of Karnataka
+            about 15 km from the Almatti Dam. It was originally known as Kappadi
+            sangama, where Basaveshwara’s teacher Ishanaguru lived, and was
+            later renamed Kudalasangama. Sangama is the confluence of the
+            Krishna and Malaprabha rivers. The main deity of Kudala Sangama is
+            Sangameshwara. It also houses Aikya Mantapa or Basavanna’s samadhi.
+            The Kudala Sangama development board oversees this temple
           </Typography>
         </CardContent>
       </Card>
@@ -187,9 +200,9 @@ const About: React.FC = () => {
           height: "100%",
           marginTop: matchMobileView ? "30px" : "40px",
           transition: "transform 0.3s ease-in-out", // Add transition for transform
-          '&:hover': {
-            transform: "scale(1.05)" // Apply scale transformation on hover
-          }
+          "&:hover": {
+            transform: "scale(1.05)", // Apply scale transformation on hover
+          },
         }}
       >
         <CardContent
@@ -198,42 +211,81 @@ const About: React.FC = () => {
             textAlign: "justify",
           }}
         >
-          <Typography component="div" variant="h5" sx={{ marginBottom: "20px", fontFamily: "Arial, sans-serif", fontWeight: "bold", fontSize: "20px", color: "#333" }}>
+          <Typography
+            component="div"
+            variant="h5"
+            sx={{
+              marginBottom: "20px",
+              fontFamily: "Arial, sans-serif",
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "#de2a1b",
+            }}
+          >
             Objectives
           </Typography>
 
-          <Typography variant="body1" color="text.secondary" component="div" sx={{ fontFamily: "Arial, sans-serif", fontSize: "16px" }}>
-            <ul style={{ paddingLeft: "20px", listStyleType: "none" }}> {/* Adjust list style */}
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            component="div"
+            sx={{ fontFamily: "Arial, sans-serif", fontSize: "16px" }}
+          >
+            <ul style={{ paddingLeft: "20px", listStyleType: "none" }}>
+              {" "}
+              {/* Adjust list style */}
               <li style={{ marginBottom: "20px" }}>
-                <Typography variant="body1" sx={{ fontWeight: "bold", color: "#555" }}>
-                  The homeland of Veera Shaiva Lingayatism is the region of Karnataka, located in the southwestern part of India.
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", color: "#555" }}
+                >
+                  The homeland of Veera Shaiva Lingayatism is the region of
+                  Karnataka, located in the southwestern part of India.
                 </Typography>
               </li>
               <li style={{ marginBottom: "20px" }}>
-                <Typography variant="body1" sx={{ fontWeight: "bold", color: "#555" }}>
-                  This tradition emerged in the 12th century under the guidance and inspiration of Basavanna, a philosopher, statesman, and social reformer.
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", color: "#555" }}
+                >
+                  This tradition emerged in the 12th century under the guidance
+                  and inspiration of Basavanna, a philosopher, statesman, and
+                  social reformer.
                 </Typography>
               </li>
               <li style={{ marginBottom: "20px" }}>
-                <Typography variant="body1" sx={{ fontWeight: "bold", color: "#555" }}>
-                  Karnataka's rich cultural and historical landscape provided a fertile ground for the development and spread of Lingayatism.
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", color: "#555" }}
+                >
+                  Karnataka's rich cultural and historical landscape provided a
+                  fertile ground for the development and spread of Lingayatism.
                 </Typography>
               </li>
               <li style={{ marginBottom: "20px" }}>
-                <Typography variant="body1" sx={{ fontWeight: "bold", color: "#555" }}>
-                  Lingayatism advocates social equality, personal devotion, and community service, resonating deeply among the people of the region.
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", color: "#555" }}
+                >
+                  Lingayatism advocates social equality, personal devotion, and
+                  community service, resonating deeply among the people of the
+                  region.
                 </Typography>
               </li>
               <li>
-                <Typography variant="body1" sx={{ fontWeight: "bold", color: "#555" }}>
-                  Basavanna's teachings emphasize moral integrity, ethical living, and social responsibility, shaping the ethos of the Lingayat community.
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", color: "#555" }}
+                >
+                  Basavanna's teachings emphasize moral integrity, ethical
+                  living, and social responsibility, shaping the ethos of the
+                  Lingayat community.
                 </Typography>
               </li>
             </ul>
           </Typography>
         </CardContent>
       </Card>
-
 
       <Card
         sx={{
@@ -246,9 +298,9 @@ const About: React.FC = () => {
           height: "100%",
           marginTop: matchMobileView ? "30px" : "40px",
           transition: "transform 0.3s ease-in-out", // Add transition for transform
-          '&:hover': {
-            transform: "scale(1.05)" // Apply scale transformation on hover
-          }
+          "&:hover": {
+            transform: "scale(1.05)", // Apply scale transformation on hover
+          },
         }}
       >
         <CardContent
@@ -256,7 +308,17 @@ const About: React.FC = () => {
             padding: matchMobileView ? "15px" : "50px",
           }}
         >
-          <Typography component="div" variant="h5" sx={{ marginBottom: "20px", fontFamily: "Arial, sans-serif", fontWeight: "bold", fontSize: "20px", color: "#333" }}>
+          <Typography
+            component="div"
+            variant="h5"
+            sx={{
+              marginBottom: "20px",
+              fontFamily: "Arial, sans-serif",
+              fontWeight: "bold",
+              fontSize: "20px",
+              color: "#333",
+            }}
+          >
             Frequently Asked Questions
           </Typography>
 
@@ -273,8 +335,26 @@ const About: React.FC = () => {
                 paddingBottom: "10px",
               }}
             >
-              <Grid item xs={matchMobileView ? 9 : 10}> {/* Adjust grid item width for mobile view */}
-                <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ fontFamily: "Arial, sans-serif", fontWeight: "bold", fontSize: "14px", color: "#333" }}>
+              <Grid item xs={matchMobileView ? 9 : 10}>
+                {" "}
+                {/* Adjust grid item width for mobile view */}
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  component="div"
+                  sx={{
+                    fontFamily: "Arial, sans-serif",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    color: "#333",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    const updatedAnswers = [...showAnswers];
+                    updatedAnswers[index] = !updatedAnswers[index];
+                    setShowAnswers(updatedAnswers);
+                  }}
+                >
                   <strong>Q: {faq.question}</strong>
                 </Typography>
               </Grid>
@@ -290,19 +370,28 @@ const About: React.FC = () => {
                   {showAnswers[index] ? <RemoveIcon /> : <AddIcon />}
                 </IconButton>
               </Grid>
-              <Grid item xs={12}> {/* Adjust grid item width for mobile view */}
+              <Grid item xs={12}>
+                {" "}
+                {/* Adjust grid item width for mobile view */}
                 {showAnswers[index] && (
-                  <Typography variant="body1" color="text.secondary" component="div" sx={{ fontFamily: "Arial, sans-serif", fontSize: "14px", color: "#666" }}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    component="div"
+                    sx={{
+                      fontFamily: "Arial, sans-serif",
+                      fontSize: "14px",
+                      color: "#666",
+                    }}
+                  >
                     A: {faq.answer}
                   </Typography>
                 )}
               </Grid>
             </Grid>
           ))}
-
         </CardContent>
       </Card>
-
     </Box>
   );
 };
