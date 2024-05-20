@@ -190,7 +190,7 @@ const Footer: React.FC = () => {
       </Grid>
       <Grid container justifyContent="center" className="my-5">
         <p className="text-sm sm:text-base font-medium">
-          Design and Created by{" "}
+          Design and Managed by{" "}
           <a href="https://www.kridaverse.com">
             {" "}
             <span className="hover:text-blue-700">Kridaverse</span>
