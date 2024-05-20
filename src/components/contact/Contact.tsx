@@ -9,11 +9,16 @@ import {
   useMediaQuery,
   useTheme,
   CardMedia,
+  Box,
 } from "@mui/material";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import qrCodeImage from "./QR.png";
+import googlePay from "./GooglePay.png";
+import phonePay from "./phonepe-icon.png";
+import amzonPay from "./amazon-a-logo-icon.png";
+import paytm from "./Paytm.png";
 
 const Contact: React.FC = () => {
   const { breakpoints } = useTheme();
@@ -62,7 +67,11 @@ const Contact: React.FC = () => {
             }}
           >
             <Card>
-              <Typography variant="h4" gutterBottom sx={{textAlign: "center"}}>
+              <Typography
+                variant="h4"
+                gutterBottom
+                sx={{ textAlign: "center" }}
+              >
                 Payment Information
               </Typography>
               <Grid container spacing={2}>
@@ -84,8 +93,40 @@ const Contact: React.FC = () => {
                       color="text.secondary"
                       sx={{ mt: 2, fontSize: "22px", fontWeight: "500" }}
                     >
-                      Scan here to pay using UPI.
+                      Pay using any UPI Apps
                     </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        mt: 2,
+                        gap: 2,
+                      }}
+                    >
+                      <img
+                        src={googlePay}
+                        alt="Google Pay"
+                        style={{ width: "60px", height: "40px" }}
+                      />
+                      <img
+                        src={phonePay}
+                        alt="PhonePe"
+                        style={{ width: "40px", height: "40px" }}
+                      />
+                      <img
+                        src={paytm}
+                        alt="Paytm"
+                        style={{ width: "45px", height: "40px" }}
+                      />
+                      <img
+                        src={amzonPay}
+                        alt="Amazon Pay"
+                        style={{
+                          width: "45px",
+                          height: "35px",
+                          marginTop: "4px",
+                        }}
+                      />
+                    </Box>
                   </CardContent>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -96,7 +137,8 @@ const Contact: React.FC = () => {
                     <Typography variant="body2" color="text.secondary">
                       <strong>Bank Name:</strong> HDFC Bank
                       <br />
-                      <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA SAMRAKSHANA SAMIT
+                      <strong>Account Holder:</strong> VEERASHAIVA LINGAYATHA
+                      SAMRAKSHANA SAMIT
                       <br />
                       <strong>Account Number:</strong> 50200087185679
                       <br />
@@ -240,7 +282,8 @@ const Contact: React.FC = () => {
                         Address:
                       </span>
                       <br />
-                      #205, Sri subramanya driving school, Bagalur Main Rd, Dwaraka Nagara, Bengaluru, Karnataka 560063
+                      #205, Sri subramanya driving school, Bagalur Main Rd,
+                      Dwaraka Nagara, Bengaluru, Karnataka 560063
                     </Typography>
                   </Grid>
                 </Grid>
