@@ -63,7 +63,14 @@ const Header: React.FC = () => {
       <>
         {!matchMobileView && (
           <Slide direction="down" in={true} mountOnEnter unmountOnExit>
-            <Toolbar>
+            <Toolbar
+              sx={{
+                position: "sticky",
+                top: 0,
+                zIndex: 1100,
+                backgroundColor: "white",
+              }}
+            >
               <img
                 alt="logo"
                 src={logo}
@@ -241,6 +248,10 @@ const Header: React.FC = () => {
             justifyContent: "space-between",
             margin: "15px 0px",
             animation: "slideInFromRight 1s ease-out",
+            position: "sticky",
+            top: 0,
+            zIndex: 1100,
+            backgroundColor: "white",
           }}
         >
           <Box>

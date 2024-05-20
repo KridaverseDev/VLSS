@@ -185,6 +185,18 @@ const Footer: React.FC = () => {
           &copy; {new Date().getFullYear()} VLSS. All rights reserved.
         </p>
       </Grid>
+      <Grid container justifyContent="center" className="my-5">
+        <p className="text-sm sm:text-base font-medium">+909090909090 </p>
+      </Grid>
+      <Grid container justifyContent="center" className="my-5">
+        <p className="text-sm sm:text-base font-medium">
+          Design and Created by{" "}
+          <a href="https://www.kridaverse.com">
+            {" "}
+            <span className="hover:text-blue-700">Kridaverse</span>
+          </a>
+        </p>
+      </Grid>
       <div className="counter float-right flex gap-1">
         <span className="font-medium">Total Visits :</span>
         <img
