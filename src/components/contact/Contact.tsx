@@ -17,8 +17,8 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import qrCodeImage from "./QR.png";
 import googlePay from "./GooglePay.png";
 import phonePay from "./phonepe-icon.png";
-import amzonPay from "./amazon-a-logo-icon.png";
 import paytm from "./Paytm.png";
+import hdfc from "./HDFC.png";
 
 const Contact: React.FC = () => {
   const { breakpoints } = useTheme();
@@ -118,12 +118,11 @@ const Contact: React.FC = () => {
                         style={{ width: "45px", height: "40px" }}
                       />
                       <img
-                        src={amzonPay}
-                        alt="Amazon Pay"
+                        src={hdfc}
+                        alt="HDFC"
                         style={{
                           width: "45px",
-                          height: "35px",
-                          marginTop: "4px",
+                          height: "45px",
                         }}
                       />
                     </Box>
