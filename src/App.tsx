@@ -9,6 +9,7 @@ import Events from "./components/Events/Events";
 import EventDetailsPage from "./components/Events/EventDetailsPage";
 import Form from "./components/form/Form";
 import Contact from "./components/contact/Contact";
+import Report from "./components/contact/Report";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/events/:eventId" element={<EventDetailsPage />} />
           <Route path="/form" element={<Form />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/report" element={<Report />} />
         </Route>
       </Routes>
     </Router>

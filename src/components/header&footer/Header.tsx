@@ -9,13 +9,13 @@ import {
   useTheme,
   IconButton,
   Slide,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-
 import { Link, useLocation } from "react-router-dom";
 import logo from "./logo_header.png";
-import MenuIcon from "@mui/icons-material/Menu";
-import SideNavigation from "./SideNavigation";
 import DehazeIcon from "@mui/icons-material/Dehaze";
+import SideNavigation from "./SideNavigation";
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -24,6 +24,9 @@ const Header: React.FC = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const isContactMenuOpen = Boolean(anchorEl);
+
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
@@ -58,188 +61,236 @@ const Header: React.FC = () => {
     />
   );
 
+  const handleContactMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleContactMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
-      <>
-        {!matchMobileView && (
-          <Slide direction="down" in={true} mountOnEnter unmountOnExit>
-            <Toolbar
+      {!matchMobileView && (
+        <Slide direction="down" in={true} mountOnEnter unmountOnExit>
+          <Toolbar
+            sx={{
+              position: "sticky",
+              top: 0,
+              zIndex: 1100,
+              backgroundColor: "white",
+            }}
+          >
+            <img
+              alt="logo"
+              src={logo}
+              style={{
+                width: matchMobileView ? 40 : 100,
+                marginLeft: matchMobileView ? "20px" : "60px",
+                animation: "fadeIn 2s ease-out",
+              }}
+            />
+            <Typography
+              component="div"
               sx={{
-                position: "sticky",
-                top: 0,
-                zIndex: 1100,
-                backgroundColor: "white",
+                flexGrow: 1,
+                fontStyle: "inherit",
+                fontSize: "18px",
+                fontWeight: "600",
+                margin: "0px 50px",
+                animation: isVisible ? "fadeIn 1s linear" : "fadeOut 1s linear",
               }}
             >
-              <img
-                alt="logo"
-                src={logo}
-                style={{
-                  width: matchMobileView ? 40 : 100,
-                  marginLeft: matchMobileView ? "20px" : "60px",
-                  animation: "fadeIn 2s ease-out",
-                }}
-              />
-              <Typography
-                component="div"
-                sx={{
-                  flexGrow: 1,
-                  fontStyle: "inherit",
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  margin: "0px 50px",
-                  animation: isVisible
-                    ? "fadeIn 1s linear"
-                    : "fadeOut 1s linear",
-                }}
-              >
-                {isEnglish ? (
-                  <>
-                    <span>VEERASHAIVA</span>
-                    <br />
-                    <span style={{ color: "#de2a1b" }}>LINGAYATHA</span>
-                    <br />
-                    <span style={{ color: "#de2a1b" }}>SAMRAKSHANA</span>
-                    <br />
-                    <span>SAMITHI(R.)</span>
-                  </>
-                ) : (
-                  <>
-                    <span>ವೀರಶೈವ</span>
-                    <br />
-                    <span style={{ color: "#de2a1b" }}>ಲಿಂಗಾಯತ</span>
-                    <br />
-                    <span style={{ color: "#de2a1b" }}>ಸಂರಕ್ಷಣಾ</span>
-                    <br />
-                    <span>ಸಮಿತಿ(ರಿ.)</span>
-                  </>
+              {isEnglish ? (
+                <>
+                  <span>VEERASHAIVA</span>
+                  <br />
+                  <span style={{ color: "#de2a1b" }}>LINGAYATHA</span>
+                  <br />
+                  <span style={{ color: "#de2a1b" }}>SAMRAKSHANA</span>
+                  <br />
+                  <span>SAMITHI(R.)</span>
+                </>
+              ) : (
+                <>
+                  <span>ವೀರಶೈವ</span>
+                  <br />
+                  <span style={{ color: "#de2a1b" }}>ಲಿಂಗಾಯತ</span>
+                  <br />
+                  <span style={{ color: "#de2a1b" }}>ಸಂರಕ್ಷಣಾ</span>
+                  <br />
+                  <span>ಸಮಿತಿ(ರಿ.)</span>
+                </>
+              )}
+            </Typography>
+            <Paper
+              sx={{
+                padding: "15px 15px 0px 15px",
+                borderRadius: "35px",
+                backgroundColor: "#ECE1E2",
+                width: "900px",
+                display: "flex",
+                justifyContent: "space-between",
+                marginRight: "40px",
+              }}
+            >
+              <Box>
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to="/"
+                  sx={{
+                    textTransform: "none",
+                    marginLeft: "20px",
+                    ...isActive("/"),
+                  }}
+                >
+                  Home
+                </Button>
+                {renderDivider(location.pathname === "/", location.pathname)}
+              </Box>
+              <Box>
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to="/veerashaiva"
+                  sx={{ textTransform: "none", ...isActive("/veerashaiva") }}
+                >
+                  Veerashaiva Lingayatha
+                </Button>
+                {renderDivider(
+                  location.pathname === "/veerashaiva",
+                  location.pathname
                 )}
-              </Typography>
-              <Paper
-                sx={{
-                  padding: "15px 15px 0px 15px",
-                  borderRadius: "35px",
-                  backgroundColor: "#ECE1E2",
-                  width: "900px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginRight: "40px",
-                  // height: "36px",
-                }}
+              </Box>
+              <Box>
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to="/about"
+                  sx={{ textTransform: "none", ...isActive("/about") }}
+                >
+                  About
+                </Button>
+                {renderDivider(
+                  location.pathname === "/about",
+                  location.pathname
+                )}
+              </Box>
+              <Box>
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to="/Events"
+                  sx={{ textTransform: "none", ...isActive("/Events") }}
+                >
+                  Events
+                </Button>
+                {renderDivider(
+                  location.pathname === "/Events",
+                  location.pathname
+                )}
+              </Box>
+              <Box>
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to="/leaders"
+                  sx={{ textTransform: "none", ...isActive("/leaders") }}
+                >
+                  Leaders
+                </Button>
+                {renderDivider(
+                  location.pathname === "/leaders",
+                  location.pathname
+                )}
+              </Box>
+              <Box
+                onMouseEnter={handleContactMenuOpen}
+                onMouseLeave={handleContactMenuClose}
               >
-                <Box>
-                  <Button
-                    color="inherit"
-                    component={Link}
-                    to="/"
-                    sx={{
-                      textTransform: "none",
-                      marginLeft: "20px",
-                      ...isActive("/"),
-                    }}
-                  >
-                    Home
-                  </Button>
-                  {renderDivider(location.pathname === "/", location.pathname)}
-                </Box>
-                <Box>
-                  <Button
-                    color="inherit"
-                    component={Link}
-                    to="/veerashaiva"
-                    sx={{ textTransform: "none", ...isActive("/veerashaiva") }}
-                  >
-                    Veerashaiva Lingayatha
-                  </Button>
-                  {renderDivider(
-                    location.pathname === "/veerashaiva",
-                    location.pathname
-                  )}
-                </Box>
-                <Box>
-                  <Button
-                    color="inherit"
-                    component={Link}
-                    to="/about"
-                    sx={{ textTransform: "none", ...isActive("/about") }}
-                  >
-                    About
-                  </Button>
-                  {renderDivider(
-                    location.pathname === "/about",
-                    location.pathname
-                  )}
-                </Box>
-                <Box>
-                  <Button
-                    color="inherit"
-                    component={Link}
-                    to="/Events"
-                    sx={{ textTransform: "none", ...isActive("/Events") }}
-                  >
-                    Events
-                  </Button>
-                  {renderDivider(
-                    location.pathname === "/Events",
-                    location.pathname
-                  )}
-                </Box>
-                <Box>
-                  <Button
-                    color="inherit"
-                    component={Link}
-                    to="/leaders"
-                    sx={{ textTransform: "none", ...isActive("/leaders") }}
-                  >
-                    Leaders
-                  </Button>
-                  {renderDivider(
-                    location.pathname === "/leaders",
-                    location.pathname
-                  )}
-                </Box>
-                <Box>
-                  <Button
-                    color="inherit"
+                <Button
+                  color="inherit"
+                  onClick={handleContactMenuOpen}
+                  sx={{ textTransform: "none", ...isActive("/contact") }}
+                >
+                  Contact
+                </Button>
+                {renderDivider(
+                  location.pathname === "/contact",
+                  location.pathname
+                )}
+                <Menu
+                  anchorEl={anchorEl}
+                  open={isContactMenuOpen}
+                  onClose={handleContactMenuClose}
+                  PaperProps={{
+                    sx: {
+                      width: "110px",
+                      backgroundColor: "#ECE1E2",
+                    },
+                  }}
+                  MenuListProps={{
+                    sx: {
+                      "& .MuiMenuItem-root": {
+                        "&:hover": {
+                          backgroundColor: "#7D0B03",
+                          color: "#ffffff",
+                        },
+                      },
+                    },
+                  }}
+                >
+                  <MenuItem
                     component={Link}
                     to="/contact"
-                    sx={{ textTransform: "none", ...isActive("/contact") }}
+                    onClick={handleContactMenuClose}
+                    sx={{
+                      "&:hover": {
+                        backgroundColor: "#7D0B03",
+                        color: "#ffffff",
+                      },
+                    }}
                   >
                     Contact
-                  </Button>
-                  {renderDivider(
-                    location.pathname === "/contact",
-                    location.pathname
-                  )}
-                </Box>
-                <Box>
-                  <Button
-                    color="inherit"
+                  </MenuItem>
+                  <MenuItem
                     component={Link}
-                    to="/form"
+                    to="/report"
+                    onClick={handleContactMenuClose}
                     sx={{
-                      textTransform: "none",
-                      ...isActive("/form"),
-                      marginRight: "20px",
+                      "&:hover": {
+                        backgroundColor: "#7D0B03",
+                        color: "#ffffff",
+                      },
                     }}
-                    // sx={{
-                    //   textTransform: "none",
-                    //   marginRight: "20px",
-                    //   fontSize: "18px",
-                    // }}
                   >
-                    Form
-                  </Button>
-                  {renderDivider(
-                    location.pathname === "/form",
-                    location.pathname
-                  )}
-                </Box>
-              </Paper>
-            </Toolbar>
-          </Slide>
-        )}
-      </>
+                    Report
+                  </MenuItem>
+                </Menu>
+              </Box>
+              <Box>
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to="/form"
+                  sx={{
+                    textTransform: "none",
+                    ...isActive("/form"),
+                    marginRight: "20px",
+                  }}
+                >
+                  Form
+                </Button>
+                {renderDivider(
+                  location.pathname === "/form",
+                  location.pathname
+                )}
+              </Box>
+            </Paper>
+          </Toolbar>
+        </Slide>
+      )}
 
       {matchMobileView && (
         <Box

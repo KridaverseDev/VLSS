@@ -30,6 +30,10 @@ export const signedInSideNavigationItems: NavigationItem[] = [
     path: "/contact",
   },
   {
+    label: "Report",
+    path: "/report",
+  },
+  {
     label: "Form",
     path: "/form",
   },
