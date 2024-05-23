@@ -1,44 +1,138 @@
 import React, { useState, useEffect } from "react";
 import EventCardGrid from "./EventsCardGrid";
-import { Box, Typography, CircularProgress, Alert } from "@mui/material";
+import { CircularProgress, useMediaQuery, useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 import axios from "axios";
 import { Event } from "./EventsType";
 
 const Events: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
+  const [value, setValue] = useState("1");
+  const { breakpoints } = useTheme();
+  const matchMobileView = useMediaQuery(breakpoints.down("md"));
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
+        setLoading(true); // Set loading to true before starting fetch
         const response = await axios.get(
           "https://vlssrbackend-483fdd4e7516.herokuapp.com/events"
         );
         setEvents(response.data.events);
-        console.log(response.data.events);
+        setLoading(false); // Set loading to false after data is fetched
       } catch (error) {
         console.log(error);
+        setLoading(false); // Ensure loading is set to false in case of an error
       }
     };
 
     fetchEvents();
   }, []);
 
-  console.log("eventsss", events);
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
-    <Box sx={{ margin: "30px 50px 0px 60px" }}>
-      <Typography
+    <TabContext value={value}>
+      <Box
         sx={{
-          fontSize: "28px",
-          fontWeight: "bold",
-          marginBottom: "10px",
-          marginLeft: "10px",
+          margin: matchMobileView ? "10px" : "0 50px",
         }}
       >
-        Latest
-      </Typography>
-      <EventCardGrid events={events} />
-    </Box>
+        <TabList
+          onChange={handleChange}
+          aria-label="lab API tabs example"
+          TabIndicatorProps={{
+            sx: { backgroundColor: "#BD2424" },
+          }}
+          sx={{
+            "& .MuiTab-root": {
+              color: "text.secondary",
+              "&.Mui-selected": {
+                color: "#BD2424",
+              },
+            },
+          }}
+        >
+          <Tab
+            label={
+              matchMobileView ? (
+                <>
+                  Latest
+                  <br />
+                  Events
+                </>
+              ) : (
+                "Latest Events"
+              )
+            }
+            value="1"
+            style={{ fontSize: matchMobileView ? "14px" : "18px" }}
+          />
+          <Tab
+            label={
+              matchMobileView ? (
+                <>
+                  Upcoming
+                  <br />
+                  Events
+                </>
+              ) : (
+                "Upcoming Events"
+              )
+            }
+            style={{ fontSize: matchMobileView ? "14px" : "18px" }}
+            value="2"
+          />
+        </TabList>
+        <TabPanel value="1">
+          {loading ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <CircularProgress
+                size={80}
+                thickness={2}
+                sx={{ animationDuration: "3s" }}
+              />{" "}
+            </Box>
+          ) : (
+            <EventCardGrid events={events} />
+          )}
+        </TabPanel>
+        <TabPanel value="2">
+          {loading ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <CircularProgress
+                size={80}
+                thickness={2}
+                sx={{ animationDuration: "3s" }}
+              />{" "}
+            </Box>
+          ) : (
+            <EventCardGrid events={events} />
+          )}
+        </TabPanel>
+      </Box>
+    </TabContext>
   );
 };
 
