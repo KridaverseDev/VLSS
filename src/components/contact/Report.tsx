@@ -9,13 +9,51 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import reportData from "./ReportData";
 
-const Report: React.FC = () => {
+const cardSx = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  height: 300,
+  backgroundSize: "cover",
+  borderRadius: 2,
+  boxShadow: 3,
+  overflow: "hidden",
+  width: 270,
+  "&:hover": {
+    boxShadow: 6,
+  },
+};
+
+const contentSx = {
+  p: 2,
+  borderRadius: "0 0 10px 10px",
+  backgroundImage:
+    "linear-gradient(rgba(217, 217, 217, 0.57), rgba(217, 217, 217, 0.57))",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  height: "100%",
+};
+
+const titleSx = {
+  mt: 2,
+  fontSize: "24px",
+};
+
+const descriptionSx = {
+  my: "auto",
+  textAlign: "left",
+  fontSize: "16px",
+};
+
+const ReportCardGrid = () => {
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
 
   return (
-    <Container sx={{ diaply: "flex", justifyContent: "space-between" }}>
+    <Container sx={{ display: "flex", justifyContent: "space-between" }}>
       <Grid container spacing={2}>
         {!matchMobileView && (
           <Grid item xs={12} sm={1}>
@@ -65,20 +103,50 @@ const Report: React.FC = () => {
               >
                 Report Information
               </Typography>
-              <CardContent>
-                <Typography variant="body1" color="text.secondary">
-                  <a
-                    href="https://firebasestorage.googleapis.com/v0/b/talentoapp-98736.appspot.com/o/resumes_sRube577odZeLwdKNto0r96QRNu1_1716357244588%20(1).pdf?alt=media&token=ae6168f6-983e-44e3-bb16-1beef51bd726"
-                    style={{ color: "inherit", textDecoration: "none" }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = "red")}
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.color = "inherit")
-                    }
+              <Grid container spacing={2} style={{ margin: "10px" }}>
+                {reportData.map((report, index) => (
+                  <Grid
+                    key={index}
+                    item
+                    xs={12}
+                    sm={3}
+                    sx={{ display: "flex", margin: "20px" }}
                   >
-                    Click here to view the Report
-                  </a>
-                </Typography>
-              </CardContent>
+                    <a
+                      href={report.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Card
+                        sx={{
+                          ...cardSx,
+                          animation: `cardEntrance ${
+                            index * 0.3
+                          }s ease-out forwards`,
+                        }}
+                      >
+                        <CardContent sx={contentSx}>
+                          <Typography
+                            variant="h5"
+                            sx={titleSx}
+                            color="text.secondary"
+                          >
+                            {report.reportName}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={descriptionSx}
+                            color="text.secondary"
+                          >
+                            {report.reportDescription}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </a>
+                  </Grid>
+                ))}
+              </Grid>
             </Card>
           </Paper>
         </Grid>
@@ -87,4 +155,4 @@ const Report: React.FC = () => {
   );
 };
 
-export default Report;
+export default ReportCardGrid;
