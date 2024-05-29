@@ -1,5 +1,6 @@
 export interface FormData {
   applicationName: string;
+  profileUrl: string;
   occupation: string;
   fatherOrHusbandName: string;
   dob: Date;
@@ -25,6 +26,7 @@ export interface FormData {
 
 const initialFormData: FormData = {
   applicationName: "",
+  profileUrl: "",
   occupation: "",
   fatherOrHusbandName: "",
   dob: new Date(),

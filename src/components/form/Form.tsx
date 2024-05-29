@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Grid,
   TextField,
@@ -29,12 +29,54 @@ import axios from "axios";
 import qrCodeImage from "../contact/QR.png";
 import { districtsAndTaluks } from "./taluk";
 import InfoIcon from "@mui/icons-material/Info";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../firebase";
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const { breakpoints } = useTheme();
   const matchMobileView = useMediaQuery(breakpoints.down("md"));
   const [error, setError] = useState("");
+  const [file, setFile] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploadMessage, setUploadMessage] = useState("");
+  const [profileUrl, setProfileUrl] = useState("");
+  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
+
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const selectedFile = files[0];
+      if (selectedFile.type.startsWith("image/")) {
+        try {
+          const storageRef = ref(storage, `images/${selectedFile.name}`);
+
+          await uploadBytes(storageRef, selectedFile);
+
+          const downloadURL = await getDownloadURL(storageRef);
+
+          setFormData((prevData) => ({ ...prevData, profileUrl: downloadURL }));
+          // setProfileUrl(downloadURL);
+          setIsPhotoUploaded(true);
+
+          setUploadMessage("Profile photo has been uploaded successfully.");
+        } catch (error) {
+          console.error("Error uploading photo:", error);
+          setUploadMessage("Error uploading photo. Please try again.");
+        }
+      } else {
+        setUploadMessage("Please upload a valid photo file.");
+      }
+    }
+  };
+
+  const handleTextFieldClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -73,16 +115,8 @@ const Form: React.FC = () => {
   }, [selectedDistrict]);
   const amount = [
     {
-      value: "Cash",
-      label: "Cash",
-    },
-    {
       value: "UPI",
       label: "UPI",
-    },
-    {
-      value: "Cheque",
-      label: "Cheque",
     },
   ];
 
@@ -161,6 +195,7 @@ const Form: React.FC = () => {
   };
 
   // console.log(formData);
+  // console.log("Profile Photo Url", profileUrl);
 
   return (
     <Container sx={{ diaply: "flex", justifyContent: "space-between" }}>
@@ -224,6 +259,34 @@ const Form: React.FC = () => {
                       }}
                     />
                   </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      fullWidth
+                      required={!isPhotoUploaded}
+                      label="Upload Profile Photo"
+                      name="uploadImage"
+                      onClick={handleTextFieldClick}
+                      value={
+                        isPhotoUploaded
+                          ? "Click here to Change Profile Photo"
+                          : ""
+                      }
+                    />
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      style={{ display: "none" }}
+                      onChange={handleFileChange}
+                      accept="image/*"
+                      hidden
+                    />
+                    {uploadMessage && (
+                      <Typography variant="body2" style={{ color: "green" }}>
+                        {uploadMessage}
+                      </Typography>
+                    )}
+                  </Grid>
+
                   <Grid item xs={12} sm={6}>
                     <TextField
                       fullWidth
