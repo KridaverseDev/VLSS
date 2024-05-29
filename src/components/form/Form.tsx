@@ -31,6 +31,10 @@ import { districtsAndTaluks } from "./taluk";
 import InfoIcon from "@mui/icons-material/Info";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
+import googlePay from "../contact/GooglePay.png";
+import phonePay from "../contact/phonepe-icon.png";
+import paytm from "../contact/Paytm.png";
+import hdfc from "../contact/HDFC.png";
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -714,8 +718,39 @@ const Form: React.FC = () => {
                   color="text.secondary"
                   sx={{ mt: 2, fontSize: "22px", fontWeight: "500" }}
                 >
-                  Scan here to pay using UPI.
+                  Pay using any UPI Apps
                 </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    mt: 2,
+                    gap: 2,
+                  }}
+                >
+                  <img
+                    src={googlePay}
+                    alt="Google Pay"
+                    style={{ width: "60px", height: "40px" }}
+                  />
+                  <img
+                    src={phonePay}
+                    alt="PhonePe"
+                    style={{ width: "40px", height: "40px" }}
+                  />
+                  <img
+                    src={paytm}
+                    alt="Paytm"
+                    style={{ width: "45px", height: "40px" }}
+                  />
+                  <img
+                    src={hdfc}
+                    alt="HDFC"
+                    style={{
+                      width: "45px",
+                      height: "45px",
+                    }}
+                  />
+                </Box>
               </CardContent>
             </Grid>
             <Grid item xs={12} sm={6}>
