@@ -141,7 +141,10 @@ const Leaders: React.FC = () => {
                     )
                   }
                   value="2"
-                  style={{ fontSize: matchMobileView ? "14px" : "18px" }}
+                  style={{
+                    fontSize: matchMobileView ? "14px" : "18px",
+                    display: "none",
+                  }}
                 />
 
                 <Tab
@@ -246,7 +249,7 @@ const Leaders: React.FC = () => {
             </TabPanel>
             <TabPanel value="2">
               {" "}
-              {isLoading ? (
+              {/* {isLoading ? (
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <CircularProgress
                     size={80}
@@ -326,7 +329,7 @@ const Leaders: React.FC = () => {
                     </Card>
                   ))}
                 </div>
-              )}
+              )} */}
             </TabPanel>
             <TabPanel value="3">
               <Box>
