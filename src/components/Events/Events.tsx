@@ -38,6 +38,12 @@ const Events: React.FC = () => {
     setValue(newValue);
   };
 
+  const latestEvents = events.filter((event) => event.status === "latest");
+  const upcomingEvents = events.filter((event) => event.status === "upcoming");
+
+  console.log(latestEvents);
+  console.log(upcomingEvents);
+
   return (
     <TabContext value={value}>
       <Box
@@ -108,7 +114,7 @@ const Events: React.FC = () => {
               />{" "}
             </Box>
           ) : (
-            <EventCardGrid events={events} />
+            <EventCardGrid events={latestEvents} />
           )}
         </TabPanel>
         <TabPanel value="2">
@@ -128,7 +134,7 @@ const Events: React.FC = () => {
               />{" "}
             </Box>
           ) : (
-            <EventCardGrid events={events} />
+            <EventCardGrid events={upcomingEvents} />
           )}
         </TabPanel>
       </Box>
